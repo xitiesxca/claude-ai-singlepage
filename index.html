@@ -501,7 +501,6 @@ dialog .dlg-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8p
 .feature-title{margin:0 0 10px;font-family:var(--font-header);font-weight:700;font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.15;color:#3A5A7A} /* same steel blue as the Empowering Independent Businesses heading */
 .feature-text{margin:0;max-width:min(820px, calc(100vw - 290px - max(20px, (100vw - 1160px) / 2 + 20px)));font-family:'Denim',var(--font-body);font-weight:400;
   font-size:clamp(1rem,1.7vw,1.3rem);line-height:1.5;color:#4677A3} /* same lighter blue as the sign-up line */
-@media (max-width:560px){.feature-inner{align-items:flex-start;padding-top:14px}.feature-copy{margin-right:44%}.feature-text{max-width:none}}
 .pano{position:relative;margin:26px 0 0;aspect-ratio:4/1;overflow:hidden;background:#F1F4F8;border:1px solid #C9D4E0}
 .pano img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
 .pano::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -529,7 +528,14 @@ dialog .dlg-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8p
 .feature-img-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
   color:var(--muted);font-size:.9rem;font-weight:600}
 .feature-img.has-img .feature-img-ph{display:none}
-@media (max-width:560px){.feature-img{top:0;right:0;bottom:0;width:40%;aspect-ratio:auto}}
+/* phones: text first, then the photo full width underneath */
+@media (max-width:640px){
+  .feature{min-height:0 !important}
+  .feature-inner{display:block;min-height:0;padding-top:22px;padding-bottom:22px}
+  .feature-copy{margin-right:0}
+  .feature-text{max-width:none}
+  .feature-img{position:relative;top:auto;right:auto;bottom:auto;width:100%;aspect-ratio:4/3}
+}
 </style>
 <style>
 /* ASFALLT Sans Bold (Creative Market): the Xities wordmark in the header and footer */

@@ -1,0 +1,2050 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xities | Black SUV rides in Denver and across Colorado</title>
+<meta name="description" content="Book a Black SUV, SUV or Party Bus ride in Denver and across Colorado with licensed independent operators. Reservations by phone: 833 950 1757.">
+<meta name="theme-color" content="#0E2440">
+<link rel="canonical" href="https://xities.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Xities">
+<meta property="og:title" content="Xities | Black SUV rides in Denver and across Colorado">
+<meta property="og:description" content="Only SUVs. Licensed operators. World class service. Reservations by phone: 833 950 1757.">
+<meta property="og:url" content="https://xities.com/">
+<meta property="og:image" content="https://xities.com/assets/img/hero-denver-skyline.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/assets/img/hero-denver-skyline.jpg" as="image">
+<link rel="preload" href="/assets/fonts/heroes.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/geomatik-medium.woff2" as="font" type="font/woff2" crossorigin>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* Geomatik by Tropical Type (licensed, Creative Market) */
+@font-face{font-family:'Geomatik';src:url(/assets/fonts/geomatik-medium.woff2) format('woff2');font-weight:400 500;font-style:normal;font-display:swap}
+@font-face{font-family:'Geomatik';src:url(/assets/fonts/geomatik-bold.woff2) format('woff2');font-weight:600 700;font-style:normal;font-display:swap}
+</style>
+<style>
+/* HEROES headline font (licensed from Creative Market) */
+@font-face{font-family:'Heroes';src:url(/assets/fonts/heroes.woff2) format('woff2');font-weight:400 800;font-style:normal;font-display:swap}
+</style>
+<style>
+/* ==========================================================
+   COLORS AND SIZES: change these to restyle the whole page
+   ========================================================== */
+:root{
+  --ink:#0E2440;        /* deep navy: hero overlay, footer */
+  --blue:#0F5E9C;       /* main buttons and active tabs */
+  --blue-dark:#0C4F85;  /* button hover */
+  --teal:#14A38B;       /* small accents */
+  --maroon:#5C0931;      /* Qatar Airways-inspired header background */
+  --coffee:#000000;      /* header nav text once scrolled (sharp black) */
+  --sun:#FFC72C;        /* yellow promo banner */
+  --sun-ink:#2A1F00;    /* text on yellow */
+  --mist:#F2F6FA;       /* page background */
+  --line:#D5DEE8;       /* borders */
+  --text:#1B2B3F;
+  --muted:#556679;
+  --danger:#B3261E;
+  --radius:14px;
+  --search-overlap:96px; /* how far the search bar overlaps the bottom of the hero photo. 0 = sits fully below it */
+  --search-width:70%;   /* search bar width on desktop: 70% = 15% inset on each side. Try 80% for a wider bar */
+  /* ---- FONTS: swap these two lines when your Creative Market fonts are ready ---- */
+  --font-display:'Bricolage Grotesque','Figtree',system-ui,-apple-system,'Segoe UI',Arial,sans-serif; /* headlines, prices, brand */
+  --font-body:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;                   /* everything else */
+  --font-hero:'Heroes','Bricolage Grotesque',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;       /* photo headline (HEROES by Creative Market) */
+  --font-header:'Geomatik','Outfit',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;               /* header: brand + links (Outfit is only a fallback) */
+  /* animation fades are set from CONFIG.timing in the script below */
+  --scene-fade:1600ms;
+  --phrase-fade:600ms;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{
+  margin:0;background:var(--mist);color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.5;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:var(--font-display);
+  line-height:1.08;margin:0;letter-spacing:-0.01em;
+}
+p{margin:0}
+[hidden]{display:none !important}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--ink);padding:8px 12px;border-radius:8px;z-index:40}
+.skip:focus{left:8px}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;isolation:isolate;color:#fff;padding-bottom:56px;background:#fff} /* white area the search bar sits on */
+/* Full-width photo right under the header (like emirates.com). Height: change the clamp() values. */
+.hero-photo{position:relative;isolation:isolate;display:flex;align-items:center;
+  min-height:clamp(320px,calc(30vw + 68px),520px);padding-top:68px;padding-bottom:var(--search-overlap)} /* panoramic strip */
+.hero-photo>.wrap{width:100%}
+.scenes{position:absolute;inset:0;z-index:-1;background:var(--ink);overflow:hidden}
+.scene{position:absolute;inset:0;opacity:0;transition:opacity var(--scene-fade) ease}
+.scene.is-active{opacity:1}
+/* dark fade at the bottom so the headline reads on any photo and the photo blends into the navy below */
+.scenes::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(14,36,64,.45) 0%,rgba(14,36,64,.08) 20%,rgba(14,36,64,.18) 60%,rgba(14,36,64,.35) 100%);
+}
+.photo-hint{position:absolute;z-index:2;top:16px;left:50%;transform:translateX(-50%);font-size:.85rem;font-weight:600;
+  color:rgba(255,255,255,.8);background:rgba(14,36,64,.35);padding:6px 12px;border-radius:999px;white-space:nowrap}
+/* Header floats over the hero photo (see-through) and turns into the white bar once you scroll. */
+.site-header{position:fixed;top:0;left:0;right:0;z-index:30;background:transparent;border-bottom:1px solid transparent;
+  font-family:var(--font-header);transition:background-color .3s ease,border-color .3s ease,box-shadow .3s ease}
+.site-header.is-scrolled{background:#fff;border-bottom-color:var(--line);box-shadow:0 4px 18px rgba(14,36,64,.08)}
+.site-header:not(.is-scrolled) .brand,
+.site-header:not(.is-scrolled) .nav-links a,
+.site-header:not(.is-scrolled) .nav-links button{color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.site-header:not(.is-scrolled) .nav-links a:hover,
+.site-header:not(.is-scrolled) .nav-links button:hover{background:rgba(255,255,255,.16)}
+/* thin white line under the header while it floats over the photo */
+.site-header:not(.is-scrolled){border-bottom-color:rgba(255,255,255,.75)}
+.site-header:not(.is-scrolled) .nav-auth-sep{color:rgba(255,255,255,.6)}
+.site-header:not(.is-scrolled) .nav-links .nav-login{border-color:#fff}
+.site-header:not(.is-scrolled) .nav-links .nav-login:hover{background:#fff;color:var(--ink);text-shadow:none}
+.site-header:not(.is-scrolled) :focus-visible{outline-color:#fff}
+.nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:12px 0;min-height:68px}
+.brand{grid-column:1;display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;
+  font-family:var(--font-header);font-weight:700;font-size:1.45rem;letter-spacing:.04em}
+.nav-links{grid-column:2;justify-self:center;display:flex;align-items:center;gap:4px}
+.nav-links a,.nav-links button{
+  color:var(--coffee);background:none;border:0;font:inherit;font-size:1.02rem;font-weight:500;letter-spacing:.01em;cursor:pointer;
+  text-decoration:none;padding:10px 14px;border-radius:8px;
+}
+.nav-links a:hover,.nav-links button:hover{background:var(--mist)}
+.nav-links a[href="#search"]{color:var(--coffee)}
+.nav-links .call{display:inline-flex;align-items:center;gap:8px;color:var(--coffee);font-weight:600;margin:0 6px;white-space:nowrap}
+.nav-links [data-open-manage]{color:var(--coffee)}
+.nav-auth{display:inline-flex;align-items:center;gap:10px;margin-left:8px}
+.nav-auth-sep{color:var(--line);font-weight:400}
+.nav-links .nav-login{
+  padding:9px 18px;border:1.5px solid var(--coffee);border-radius:999px;color:var(--coffee);
+}
+.nav-links .nav-login:hover{background:var(--coffee);color:#fff}
+.hero :focus-visible{outline-color:var(--sun)}
+.hero-copy{width:var(--search-width);margin:0 auto;text-align:right}
+.hero h1{font-size:clamp(1.9rem,4.2vw,3.3rem);font-weight:700;min-height:3.3em;display:flex;flex-direction:column;justify-content:center;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.phrase-line{display:block}
+.hero h1{font-family:var(--font-hero);font-weight:400;letter-spacing:.01em}
+.phrase{display:block;white-space:pre-line;transition:opacity var(--phrase-fade) ease,transform var(--phrase-fade) ease}
+.phrase.is-out{opacity:0;transform:translateY(10px)}
+.sub{font-size:1.1rem;max-width:52ch;margin:18px 0 0 auto;color:rgba(255,255,255,.92)}
+@media (max-width:560px){.hero h1{min-height:2.2em}}
+
+/* ---------- Hero row: side banner + search card, side by side like alaskaair.com ---------- */
+.hero-row{position:relative;z-index:2;display:flex;align-items:stretch;gap:24px;width:var(--search-width);margin:calc(var(--search-overlap) * -1) auto 0}
+.side-banner{
+  position:relative;order:-1;flex:1.56 1 0;min-width:200px;border-radius:18px;overflow:hidden;
+  box-shadow:0 18px 50px rgba(14,36,64,.35);background:var(--ink);
+}
+.side-scene{position:absolute;inset:0;opacity:0;transition:opacity var(--scene-fade) ease}
+.side-scene.is-active{opacity:1}
+.side-banner-label{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:16px;color:rgba(255,255,255,.92);font-weight:700;font-size:.95rem;background:rgba(14,36,64,.18);
+}
+@media (max-width:900px){
+  .hero-row{flex-direction:column}
+  .side-banner{width:100%;min-height:180px;order:0}
+  .search{order:0}
+}
+
+/* ---------- Search card ---------- */
+.search{
+  position:relative;z-index:2;flex:1 1 0;background:var(--ink);border-radius:18px;
+  padding:0 24px 24px;box-shadow:0 18px 50px rgba(14,36,64,.35);
+}
+.search{color:#fff}
+.search :focus-visible{outline-color:var(--blue)}
+.tabs{display:flex;justify-content:safe center;gap:2px;background:var(--blue);border-radius:18px;margin:0 -24px 22px;padding:8px 24px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  background:none;border:0;font:inherit;font-weight:700;color:rgba(255,255,255,.92);cursor:pointer;
+  padding:16px 11px 13px;border-bottom:3px solid transparent;white-space:nowrap;
+}
+.tab:hover{color:#fff}
+.tab[aria-selected="true"]{color:#fff;border-color:#fff}
+.tab:focus-visible{outline:3px solid #fff;outline-offset:-3px;border-radius:6px}
+.s4{grid-column:span 4}
+.s8{grid-column:span 8}
+.s9{grid-column:span 9}
+.s12{grid-column:span 12}
+.s6{grid-column:span 6}
+.results{margin-top:20px;border-top:1px solid var(--line)}
+.result{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.result-title{font-weight:700;color:var(--ink)}
+.result-sub{color:var(--muted);font-size:.95rem}
+.result-price{font-weight:700;color:var(--ink);white-space:nowrap}
+
+.fields{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin:0 -24px}
+.f-pick,.f-drop{grid-column:span 6}
+.f-date,.f-time{grid-column:span 6}
+label,.label{display:block;font-size:.86rem;font-weight:700;margin-bottom:6px;color:var(--ink)}
+input[type=text],input[type=email],input[type=tel],input[type=date],input[type=time],select{
+  width:100%;height:52px;border:1.5px solid var(--line);border-radius:10px;padding:0 14px;
+  font:inherit;background:#fff;color:var(--text);
+}
+input:focus-visible,select:focus-visible{outline:3px solid rgba(15,94,156,.35);outline-offset:0;border-color:var(--blue)}
+.fields>div:not(.honey){background:var(--blue);border-radius:12px;padding:10px 14px 12px}
+.fields label,.fields .label{color:#fff;font-weight:800;text-shadow:0 1px 3px rgba(0,0,0,.18)}
+.fields input[type=text],.fields input[type=email],.fields input[type=tel],.fields input[type=date],.fields input[type=time],.fields select{
+  background:transparent;border:0;color:#fff;height:40px;padding:0;color-scheme:dark;
+  font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,.18);
+}
+.fields input::placeholder{color:#fff;opacity:.9;font-weight:700;text-shadow:0 1px 3px rgba(0,0,0,.18)}
+.search .fine{color:rgba(255,255,255,.85)}
+.search .results{border-top-color:rgba(255,255,255,.25)}
+.search .result{border-bottom-color:rgba(255,255,255,.25)}
+.search .result-title{color:#fff}
+.search .result-sub{color:rgba(255,255,255,.78)}
+.search .result-price{color:#fff}
+.search .price{color:#fff}
+.search .price-label{color:rgba(255,255,255,.85)}
+.search .facts dt{color:rgba(255,255,255,.78)}
+.search .facts dd{color:#fff}
+.search .quote{border-top-color:rgba(255,255,255,.25)}
+.search .msg.error{color:#FFB4B0}
+.search .msg.ok{color:#8FF0C8}
+.search .btn.ghost{background:transparent;color:#fff;border-color:#fff}
+.search .btn.ghost:hover{background:rgba(255,255,255,.15)}
+.search .book{background:var(--mist);color:var(--text)}
+.search .book label{color:var(--ink)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.honey{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.actions{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:20px;flex-wrap:wrap}
+.fine{font-size:.9rem;color:var(--muted);max-width:46ch}
+.btn{
+  height:52px;padding:0 28px;border:0;border-radius:10px;font:inherit;font-weight:700;
+  background:var(--blue);color:#fff;cursor:pointer;
+}
+.btn:hover{background:var(--blue-dark)}
+.btn[disabled]{opacity:.65;cursor:progress}
+.btn.ghost{background:transparent;color:var(--blue);border:1.5px solid var(--blue)}
+.btn.ghost:hover{background:rgba(15,94,156,.08)}
+.btn.dark{background:var(--ink)}
+.btn.dark:hover{background:#0a1a30}
+.btn.sun{background:var(--sun);color:var(--sun-ink)}
+.btn.sun:hover{background:#ffd254}
+.msg{margin-top:12px;font-weight:600}
+.msg.error{color:var(--danger)}
+.msg.ok{color:#0B6B57}
+
+/* ---------- Attached search bar: tabs and fields joined into one piece, thin lines between them ---------- */
+.search{overflow:hidden}
+.search .tabs{border-radius:0;margin-bottom:0}
+.search .fields{gap:1px;background:rgba(255,255,255,.28);border-top:1px solid rgba(255,255,255,.28)}
+.search .fields>div:not(.honey){border-radius:0}
+/* Book now sits in the bottom-right cell of the search bar; the dark bottom strip is gone */
+.search{padding-bottom:0}
+.search form{margin:0}
+/* ride tab: Date under From, Pickup time right under Where to, Book now beside it */
+.f-date{grid-column:span 6}
+.f-time,.f-btn{grid-column:span 3}
+.s3{grid-column:span 3}
+.search .fields>div.f-btn,.search .fields>div.s-btn{padding:12px 14px;display:flex}
+.search-btn{flex:1;height:auto;min-height:52px;border-radius:10px;background:var(--blue);border:1.5px solid #fff;font-size:1.1rem;letter-spacing:.01em}
+.search-btn:hover{background:rgba(255,255,255,.14)}
+.search .msg{margin:0;padding:12px 0 14px}
+.search .quote{padding-bottom:24px}
+@media (max-width:560px){
+  .f-date,.f-time{grid-column:span 6}
+  .fields>.f-btn,.fields>.s-btn{grid-column:span 12}
+  .search{padding-bottom:0 !important}
+  .s3{grid-column:span 4}
+}
+@media (max-width:900px){.search{flex:0 0 auto}}
+
+/* ---------- WHITE search bar: white card, tabs and fields; navy text; blue for the active tab and Book now ---------- */
+.search{background:#fff;color:var(--text)}
+.search .tabs{background:#fff;border-bottom:1px solid var(--line)}
+.search .tab{color:var(--muted)}
+.search .tab:hover{color:var(--ink)}
+.search .tab[aria-selected="true"]{color:var(--blue);border-color:var(--blue)}
+.search .tab:focus-visible{outline-color:var(--blue)}
+.search .fields{background:var(--line);border-top:0}
+.search .fields>div:not(.honey){background:#fff;border:0}
+.search .fields label,.search .fields .label{color:var(--ink);text-shadow:none}
+.search .fields input,.search .fields select{color:var(--text);text-shadow:none;color-scheme:light}
+.search .fields input::placeholder{color:var(--muted);text-shadow:none}
+.search .fine{color:var(--muted);text-shadow:none}
+.search .results,.search .quote{border-top-color:var(--line)}
+.search .result{border-bottom-color:var(--line)}
+.search .result-title,.search .result-price,.search .price,.search .facts dd{color:var(--ink)}
+.search .result-sub,.search .price-label,.search .facts dt{color:var(--muted)}
+.search .msg.error{color:var(--danger)}
+.search .msg.ok{color:#0B6B57}
+.search .btn.ghost{background:transparent;color:var(--blue);border-color:var(--blue)}
+.search .btn.ghost:hover{background:rgba(15,94,156,.08)}
+.search-btn{color:#fff}
+.search-btn:hover{background:var(--blue-dark)}
+
+/* Date and Pickup time match From / Where to: same grey text until filled in */
+.search .fields label,.search .fields .label{color:var(--muted);font-size:1rem;font-weight:700}
+.search .fields input[type=date],.search .fields input[type=time],.search .fields select{color:var(--muted)}
+.search .fields input.has-value,.search .fields select.has-value{color:var(--text)}
+/* Search bar text: Denim in the same soft black as the Peace of Mind paragraph */
+.search .fields label,.search .fields .label{font-family:'Denim',var(--font-body);font-weight:400;font-size:1.15rem;color:rgba(0,0,0,.55)}
+.search .fields input,.search .fields select{font-family:'Denim',var(--font-body);font-weight:400;font-size:1.15rem}
+.search .fields input::placeholder{font-family:'Denim',var(--font-body);font-weight:400;color:rgba(0,0,0,.55);opacity:1}
+.search .fields input[type=date],.search .fields input[type=time],.search .fields select{color:rgba(0,0,0,.55)}
+.search .fields input.has-value,.search .fields select.has-value{color:var(--text)}
+
+/* ---------- Second container: experience tiles under the search bar ---------- */
+.search.explore{display:block;width:var(--search-width);margin:18px auto 0;padding:20px 24px 22px}
+.explore-head{display:flex;align-items:baseline;justify-content:space-between;gap:6px 16px;flex-wrap:wrap;margin-bottom:14px}
+.explore-title{font-family:var(--font-header);font-size:1.15rem;font-weight:700;color:var(--ink);letter-spacing:0}
+.explore-sub{color:var(--muted);font-size:.92rem}
+.explore-tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.explore-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:92px;
+  padding:14px 8px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);
+  font:inherit;font-weight:700;font-size:.95rem;line-height:1.2;text-align:center;cursor:pointer;
+  transition:border-color .15s ease,background-color .15s ease,color .15s ease}
+.explore-tile svg{color:var(--blue);flex:none}
+.explore-tile:hover{border-color:var(--blue)}
+.explore-tile[aria-expanded="true"]{border-color:var(--blue);background:rgba(15,94,156,.06);color:var(--blue)}
+.explore #otherPanels>div:not([hidden]){margin-top:18px}
+.explore .fields{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+@media (max-width:560px){
+  .search.explore{padding:16px 16px 18px !important;margin-top:16px}
+  .explore-tiles{grid-template-columns:repeat(3,1fr);gap:8px}
+  .explore-tile{min-height:84px;font-size:.88rem}
+}
+
+/* ---------- Quote result ---------- */
+.quote{margin-top:24px;border-top:1px solid var(--line);padding-top:24px}
+.quote-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.price{font-family:var(--font-display);font-weight:700;
+  font-size:clamp(2.6rem,7vw,4rem);line-height:1;color:var(--ink)}
+.price-label{font-weight:700;color:var(--muted);margin-bottom:6px}
+.facts{display:flex;gap:28px;flex-wrap:wrap;margin:0}
+.facts div{min-width:96px}
+.facts dt{font-size:.85rem;color:var(--muted);font-weight:600}
+.facts dd{margin:0;font-weight:700;font-size:1.15rem;color:var(--ink)}
+.quote-actions{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.book{margin-top:20px;background:var(--mist);border-radius:12px;padding:20px}
+.book-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.checks{display:grid;gap:10px;margin-top:16px}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:.92rem;color:var(--muted);font-weight:500;margin:0}
+.check input{width:20px;height:20px;margin:2px 0 0;flex:none;accent-color:var(--blue)}
+
+/* ---------- Popular trips ---------- */
+.section{padding:64px 0 0}
+.section h2{font-size:clamp(1.6rem,3.2vw,2.2rem);color:var(--ink)}
+.section .lead{margin-top:8px;color:var(--muted);max-width:60ch}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:26px}
+.card{
+  display:block;text-align:left;font:inherit;color:inherit;background:#fff;
+  border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;padding:0;cursor:pointer;
+}
+.card:hover{border-color:var(--blue)}
+.thumb{height:170px}
+.card-body{display:flex;flex-direction:column;gap:2px;padding:14px 16px 16px}
+.card-tag{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal)}
+.card-title{font-family:var(--font-header);font-weight:700;font-size:1.08rem;color:var(--ink);line-height:1.25}
+.card-note{margin-top:6px;font-weight:600;font-size:.92rem;color:var(--blue)}
+.card:hover .card-note{text-decoration:underline}
+
+/* ---------- Good to know ---------- */
+.know{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:26px}
+.know div{border-top:1px solid rgba(0,0,0,.12);padding-top:16px}
+.know h3{font-size:1.2rem;color:var(--ink)}
+.know p{margin-top:8px;color:var(--muted);font-family:'Denim',var(--font-body);font-size:1.1rem;line-height:1.45}
+
+/* ---------- Bundle savings ---------- */
+.bundle{margin-top:72px;background:#fff;color:var(--ink);padding:44px 0;border-top:1px solid var(--line)}
+.bundle-inner{display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap}
+.bundle h2{font-family:var(--font-header);font-size:clamp(1.5rem,3vw,2rem);color:var(--ink)}
+.bundle p{margin-top:8px;color:var(--muted);max-width:52ch;font-family:'Denim',var(--font-body);font-size:1.1rem}
+.bundle-actions{display:flex;gap:12px;flex-wrap:wrap}
+.bundle .btn{display:inline-flex;align-items:center;text-decoration:none;font-family:var(--font-header);font-weight:500;font-size:1.02rem;letter-spacing:.01em}
+.btn.ghost-light{background:transparent;color:#fff;border:1.5px solid #fff}
+.btn.ghost-light:hover{background:rgba(255,255,255,.14)}
+.bundle :focus-visible{outline-color:var(--blue)}
+.bundle .btn.ghost-light{color:var(--blue);border-color:var(--blue)}
+.bundle .btn.ghost-light:hover{background:rgba(15,94,156,.08)}
+@media (max-width:560px){.bundle-actions,.bundle-actions .btn{width:100%;justify-content:center}}
+.receipt{background:#fff;color:var(--text);border-radius:var(--radius);padding:22px 24px}
+.receipt h3{font-size:1.05rem;color:var(--muted);font-family:var(--font-body);font-weight:600;letter-spacing:0}
+.receipt dl{margin:12px 0 0}
+.receipt .line{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line)}
+.receipt .line:last-child{border-bottom:0;font-weight:700;font-size:1.2rem;color:var(--ink)}
+.receipt dt,.receipt dd{margin:0}
+.receipt .save{color:#0B6B57;font-weight:700}
+
+/* ---------- Footer ---------- */
+footer{background:var(--ink);color:rgba(255,255,255,.86);padding:52px 0 28px}
+footer :focus-visible{outline-color:var(--sun)}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px}
+.foot-area{color:rgba(255,255,255,.7)}
+.foot-brand{font-family:var(--font-header);font-weight:700;font-size:1.3rem;color:#fff}
+.foot-brand-sub{font-family:var(--font-body);font-weight:600;font-size:.85rem;color:rgba(255,255,255,.86);margin-top:2px}
+.foot-grid p{margin-top:10px;max-width:34ch;font-size:.95rem}
+footer h3{font-family:var(--font-body);font-size:.95rem;font-weight:700;color:#fff;letter-spacing:0}
+footer ul{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:8px}
+footer a,footer .linkbtn{color:rgba(255,255,255,.86);text-decoration:none;font:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+footer a:hover,footer .linkbtn:hover{text-decoration:underline}
+.legal{margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.88rem;color:rgba(255,255,255,.7)}
+
+/* ---------- Manage booking dialog ---------- */
+dialog{border:0;border-radius:16px;padding:26px;width:calc(100% - 32px);max-width:440px;color:var(--text)}
+dialog::backdrop{background:rgba(14,36,64,.55)}
+dialog h2{font-size:1.5rem;color:var(--ink)}
+dialog p.lead{margin:8px 0 18px;color:var(--muted)}
+dialog .field{margin-bottom:14px}
+dialog .policy-body{line-height:1.55;margin:12px 0 18px}dialog .policy-body h3{font-size:1.1rem;margin:18px 0 6px;color:var(--ink)}dialog .policy-body h4{font-size:1rem;margin:16px 0 4px;color:var(--ink)}dialog .policy-body p{margin:0 0 10px}dialog .policy-body .policy-list{margin:6px 0 10px}
+footer button.linkbtn[data-open-privacy]{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer}
+button.linkbtn[data-open-policy]{background:none;border:0;padding:0;font:inherit;color:var(--blue,#0E5A9C);cursor:pointer;text-decoration:underline}
+footer button.linkbtn[data-open-policy]{color:inherit;text-decoration:none}
+.phone-book{display:flex;align-items:center;gap:24px;padding:18px 24px 22px;border-top:1px solid #e3e7ee;margin:0 -24px}
+.pb-title{margin:0;font-weight:800;font-size:1.15rem;color:var(--ink)}
+.pb-text{margin:4px 0 0;color:var(--muted);line-height:1.5}
+/* Phone panel uses the same fonts as the Best in Class section (Benzin heading, Denim caption) */
+.pb-title{font-family:'Benzin',var(--font-header);font-weight:700;letter-spacing:.01em}
+.pb-text{font-family:'Denim',var(--font-body);font-size:1.1rem;line-height:1.45}
+.pb-call{flex:none;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;padding-left:28px;padding-right:28px}
+@media (max-width:640px){.phone-book{flex-direction:column;align-items:stretch;gap:14px;padding:16px 16px 18px;margin:0 -16px}.pb-call{width:100%}}
+dialog .policy-list{margin:14px 0 18px;padding-left:20px;line-height:1.55}dialog .policy-list li{margin-bottom:10px}
+dialog .dlg-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+
+/* ---------- Responsive ---------- */
+@media (max-width:960px){
+  :root{--search-width:100%;--search-overlap:64px}
+  .book-grid{grid-template-columns:1fr}
+  .bundle-inner{grid-template-columns:1fr}
+  .know{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  .search{padding:0 16px 20px;margin-top:32px}
+  .tabs{margin:0 -16px 20px;padding:0 16px}
+  .fields{margin:0 -16px}
+  .f-pick,.f-drop,.s6{grid-column:span 12}
+  .s4{grid-column:span 6}
+  .f-date,.f-time{grid-column:span 6}
+  .actions .btn,.quote-actions .btn{width:100%}
+  .foot-grid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .search input[type=date],.search input[type=time]{padding:0 10px;font-size:.95rem}
+}
+@media (max-width:640px){
+  .nav-links a[href="#search"],.nav-links [data-open-manage]{display:none}
+  .brand{font-size:1.25rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .scene,.phrase{transition:none}
+}
+
+
+
+/* ---------- Hero announcement badge ---------- */
+.live-badge{position:relative;display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;padding:9px 16px 9px 14px;
+  border-radius:999px;background:rgba(8,20,38,.55);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  color:#fff;text-decoration:none;text-shadow:none;overflow:hidden;
+  font-family:var(--font-header);font-weight:500;font-size:1rem;letter-spacing:.01em;
+  opacity:0;transform:translateY(-10px);animation:liveIn .8s ease .4s forwards}
+.live-badge::after{content:"";position:absolute;top:0;bottom:0;left:-40%;width:35%;
+  background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.28),rgba(255,255,255,0));
+  animation:liveShine 3.2s ease-in-out 1.4s infinite}
+.live-badge:hover{background:rgba(8,20,38,.72)}
+.live-dot{position:relative;width:10px;height:10px;border-radius:50%;background:#3DDC84;flex:none}
+.live-dot::before{content:"";position:absolute;inset:0;border-radius:50%;background:#3DDC84;animation:livePulse 1.6s ease-out infinite}
+.live-num{padding-left:10px;border-left:1px solid rgba(255,255,255,.4);color:var(--sun);font-weight:700;white-space:nowrap}
+@keyframes liveIn{to{opacity:1;transform:none}}
+@keyframes livePulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(2.8);opacity:0}}
+@keyframes liveShine{0%{left:-40%}55%,100%{left:120%}}
+@media (prefers-reduced-motion:reduce){.live-badge{animation:none;opacity:1;transform:none}.live-badge::after,.live-dot::before{animation:none;display:none}}
+.live-badge{text-align:left}
+@media (max-width:560px){.live-badge{font-size:.9rem;gap:8px;padding:8px 14px 8px 12px}.live-num{display:none}}
+/* ---------- Closing photos (three) ---------- */
+.vibe{padding:8px 0 72px;background:#fff}
+.vibe h2{font-family:var(--font-header);font-size:clamp(1.6rem,3.2vw,2.2rem);color:var(--ink)}
+.vibe-lead{margin-top:8px;font-family:'Denim',var(--font-body);font-size:1.1rem;color:var(--muted)}
+.vibe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.vibe-card{display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--ink);text-decoration:none}
+.vibe-pic{position:relative;display:block;width:100%;max-width:300px;aspect-ratio:1/1;border-radius:50%;overflow:hidden;background:var(--line);
+  box-shadow:0 10px 30px rgba(14,36,64,.18);transition:box-shadow .3s ease}
+.vibe-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.vibe-card:hover img{transform:scale(1.06)}
+.vibe-card:hover .vibe-pic{box-shadow:0 0 0 4px var(--sun),0 14px 36px rgba(14,36,64,.22)}
+.vibe-copy{display:flex;flex-direction:column;align-items:center;gap:4px;margin-top:18px;max-width:320px}
+.vibe-title{font-family:'Benzin',var(--font-header);font-weight:700;letter-spacing:.01em;font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.25;color:var(--ink)}
+.vibe-line{font-family:'Denim',var(--font-body);font-size:1.05rem;color:var(--muted)}
+.vibe-go{margin-top:6px;font-family:'Denim',var(--font-body);font-weight:400;font-size:1.05rem;color:var(--blue)}
+.vibe-card:hover .vibe-go{text-decoration:underline}
+.vibe-card:focus-visible{outline:0}
+.vibe-card:focus-visible .vibe-pic{outline:3px solid var(--blue);outline-offset:4px}
+@media (prefers-reduced-motion:reduce){.vibe-card img{transition:none}.vibe-card:hover img{transform:none}}
+@media (max-width:760px){.vibe-grid{grid-template-columns:1fr;gap:36px}.vibe-pic{max-width:260px}}
+/* closing photos crossfade (same timing as the vehicle cards) */
+.vibe-pic .vs{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity var(--v-fade,1200ms) ease,transform .6s ease}
+.vibe-pic .vs.is-active{opacity:1}
+.vibe-pic .vs-empty{display:block;background:repeating-linear-gradient(135deg,#F4F6F9 0 12px,#EDF1F5 12px 24px)}
+.vibe-card:hover .vs{transform:scale(1.06)}
+@media (prefers-reduced-motion:reduce){.vibe-pic .vs{transition:none}.vibe-card:hover .vs{transform:none}}
+/* ---------- New white container (full width, 10% taller than Plan your experience) ---------- */
+.hero{overflow-x:clip;z-index:1} /* lets the Plan your experience shadow fade softly onto the white below */
+.feature{position:relative;width:100vw;margin:36px 0 0 calc(50% - 50vw);background:#fff;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);min-height:215px;box-sizing:border-box}
+.feature-inner{min-height:inherit;display:flex;align-items:center;padding-top:20px;padding-bottom:20px;box-sizing:border-box}
+.feature-title{margin:0 0 10px;font-family:var(--font-header);font-weight:700;font-size:clamp(1.4rem,2.4vw,1.9rem);line-height:1.15;color:#3A5A7A} /* same steel blue as the Empowering Independent Businesses heading */
+.feature-text{margin:0;max-width:min(820px, calc(100vw - 290px - max(20px, (100vw - 1160px) / 2 + 20px)));font-family:'Denim',var(--font-body);font-weight:400;
+  font-size:clamp(1rem,1.7vw,1.3rem);line-height:1.5;color:#4677A3} /* same lighter blue as the sign-up line */
+@media (max-width:560px){.feature-inner{align-items:flex-start;padding-top:14px}.feature-copy{margin-right:44%}.feature-text{max-width:none}}
+.pano{position:relative;margin:26px 0 0;aspect-ratio:4/1;overflow:hidden;background:#F1F4F8;border:1px solid #C9D4E0}
+.pano img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 60%}
+.pano::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(8,20,38,.72) 0%,rgba(8,20,38,.45) 38%,rgba(8,20,38,0) 68%)}
+.pano-copy{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  gap:6px;padding:24px 36px;max-width:560px;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.35)}
+.pano-brand{font-family:'Asfallt Sans',var(--font-header);font-weight:700;font-size:clamp(1.6rem,2.8vw,2.2rem);line-height:1}
+.pano-text{margin:4px 0 0;font-family:'Denim',var(--font-body);font-size:clamp(1rem,1.45vw,1.15rem);line-height:1.4}
+.pano-ask{margin:0;font-family:var(--font-header);font-weight:700;font-size:clamp(1rem,1.5vw,1.2rem)}
+.pano-actions{display:flex;gap:10px;margin-top:8px}
+.pano-actions .btn{display:inline-flex;align-items:center;text-decoration:none;text-shadow:none}
+.pano .pano-ph{z-index:0}
+.pano-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-weight:600}
+.pano.has-img .pano-ph{display:none}
+@media (max-width:760px){
+  .pano{aspect-ratio:auto;min-height:340px}
+  .pano::after{background:linear-gradient(180deg,rgba(8,20,38,.35) 0%,rgba(8,20,38,.7) 100%)}
+  .pano-copy{position:relative;min-height:340px;max-width:none;padding:22px 20px;box-sizing:border-box}
+  .pano-actions{width:100%}.pano-actions .btn{flex:1;justify-content:center}
+}
+.feature + .search.explore{margin-top:36px}
+.feature-img{position:absolute;top:0;right:0;bottom:0;aspect-ratio:1/1;margin:0;
+  border-radius:0;overflow:hidden;background:#F0F0F0;border:0}
+.feature-img img{display:block;width:100%;height:100%;object-fit:cover}
+.feature-img-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  color:var(--muted);font-size:.9rem;font-weight:600}
+.feature-img.has-img .feature-img-ph{display:none}
+@media (max-width:560px){.feature-img{top:0;right:0;bottom:0;width:40%;aspect-ratio:auto}}
+</style>
+<style>
+/* ASFALLT Sans Bold (Creative Market): the Xities wordmark in the header and footer */
+@font-face{font-family:'Asfallt Sans';src:url(/assets/fonts/asfallt-sans-bold.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap}
+.brand span,.foot-brand{font-family:'Asfallt Sans',var(--font-header);font-weight:700}
+/* Footer uses the header font (Geomatik); the Xities wordmark stays ASFALLT Sans */
+footer{font-family:var(--font-header)}
+footer h3{font-family:var(--font-header);font-weight:700;font-size:1.02rem;letter-spacing:.02em}
+footer li a,footer li .linkbtn,footer li .linkbtn[data-open-privacy],footer li .linkbtn[data-open-policy]{font-family:var(--font-header);font-weight:500;font-size:.98rem;letter-spacing:.01em}
+.foot-brand-sub{font-family:var(--font-header);font-weight:600;letter-spacing:.03em}
+.foot-grid p{font-family:var(--font-header);font-weight:500}
+footer .legal{font-family:var(--font-body)} /* Geomatik's 6 reads like a b in the year */
+</style>
+<style>
+/* Crisp white lower section: pure white from under the search area down to the footer */
+main{background:#fff}
+.bundle{margin-top:0}
+main .section[aria-label="Good to know"]{padding-bottom:72px}
+.card{border-color:#C9D4E0;box-shadow:0 1px 2px rgba(14,36,64,.06),0 6px 18px rgba(14,36,64,.06)}
+.card:hover{border-color:var(--blue);box-shadow:0 2px 4px rgba(14,36,64,.08),0 10px 26px rgba(14,36,64,.10)}
+</style>
+<style>
+/* Experience tiles: picture box on top, caption underneath outside the box.
+   Set "photo" on a category in CONFIG to fill its box with a photo instead of the icon. */
+.explore-tile,.explore-tile:hover,.explore-tile[aria-expanded="true"]{border:0;background:none;padding:0;min-height:0;gap:8px;justify-content:flex-start;color:var(--ink)}
+.tile-box{display:flex;align-items:center;justify-content:center;align-self:stretch;height:84px;
+  border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden;
+  transition:border-color .15s ease,box-shadow .15s ease}
+.explore-tile:hover .tile-box{border-color:var(--blue)}
+.explore-tile[aria-expanded="true"] .tile-box{border-color:var(--blue);box-shadow:0 0 0 2px var(--blue)}
+.explore-tile[aria-expanded="true"]{color:var(--blue)}
+.explore-tile:focus-visible{outline:0}
+.explore-tile:focus-visible .tile-box{outline:3px solid var(--blue);outline-offset:2px}
+.tile-box.tile-photo{border-color:transparent;background:var(--tile-photo) var(--tile-pos,center)/var(--tile-zoom,cover) no-repeat,var(--ink)}
+.tile-box.tile-photo svg{display:none}
+.tile-box.tile-photo{border-radius:0} /* square photo corners */
+@media (max-width:560px){.tile-box{height:72px}}
+</style>
+<style>
+/* BENZIN Bold (Creative Market): the 'Book a Black SUV Ride' title on the search bar */
+@font-face{font-family:'Benzin';src:url(/assets/fonts/benzin-bold.woff2) format('woff2');font-weight:700;font-style:normal;font-display:swap}
+#tab-ride{font-family:'Benzin',var(--font-header);font-weight:700;letter-spacing:.02em}
+.explore-title{font-family:'Benzin',var(--font-header);font-weight:700;letter-spacing:.02em}
+#trips h2{font-family:'Benzin',var(--font-header);font-weight:700;letter-spacing:.01em;font-size:clamp(1.3rem,2.6vw,1.9rem)}
+/* underline under the ride title: exactly as wide as the words, with a small gap below them */
+#tab-ride{position:relative;border-bottom-color:transparent !important}
+#tab-ride[aria-selected="true"]::after{content:"";position:absolute;left:11px;right:11px;bottom:9px;
+  height:3px;background:var(--blue);border-radius:2px}
+/* Search bar header: Book a ride | Black SUV | SUV | Party Bus */
+.search .tabs{align-items:center;justify-content:safe center}
+#tab-ride{cursor:default;color:var(--ink) !important;padding-right:6px}
+#tab-ride::after{display:none !important}
+.vtypes{display:flex;align-items:center}
+.vsep{width:1px;height:22px;background:var(--line);margin:0 12px;flex:none}
+.vtype{background:none;border:0;font:inherit;font-weight:700;color:var(--muted);cursor:pointer;white-space:nowrap;
+  padding:16px 6px 13px;position:relative}
+.vtype:hover{color:var(--ink)}
+.vtype[aria-checked="true"]{color:var(--blue)}
+.vtype[aria-checked="true"]::after{content:"";position:absolute;left:6px;right:6px;bottom:9px;height:3px;background:var(--blue);border-radius:2px}
+.vtype:focus-visible{outline:3px solid var(--blue);outline-offset:-3px;border-radius:6px}
+@media (max-width:560px){.search .tabs{flex-wrap:wrap;justify-content:center;row-gap:0}#tab-ride{flex-basis:100%;text-align:center;padding:14px 0 2px}.vtypes{justify-content:center}.vtypes .vsep:first-child{display:none}.vsep{margin:0 10px}.vtype{padding:10px 4px 13px}.vtype[aria-checked="true"]::after{bottom:7px}}
+</style>
+<style>
+/* DENIM (Creative Market): captions under the Plan your experience tiles */
+@font-face{font-family:'Denim';src:url(/assets/fonts/denim-regular.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
+.explore-tile>span:not(.tile-box){font-family:'Denim',var(--font-body);font-weight:400;font-size:1.05rem;letter-spacing:.01em}
+.explore-sub{font-family:'Denim',var(--font-body);font-weight:400;font-size:1.1rem;letter-spacing:.01em}
+/* fleet card captions: centered, DENIM */
+.card.vehicle .card-body{text-align:center}
+.card.vehicle .card-title.is-swapping{opacity:0}
+.card.vehicle .card-title{transition:opacity calc(var(--v-fade,1200ms) / 2) ease;display:block;font-family:'Denim',var(--font-body);font-weight:400;font-size:1.15rem;letter-spacing:.01em}
+</style>
+<style>
+/* Fleet grid: two rows of three on desktop, two across on tablets, one on phones */
+#cards{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){#cards{gap:12px}.card.vehicle .thumb{height:150px !important}.card.vehicle .card-body{padding:12px 12px 14px}}
+@media (max-width:600px){#cards{grid-template-columns:1fr}}
+.card.vehicle .thumb{height:200px}
+.thumb-empty{display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#F4F6F9 0 12px,#EDF1F5 12px 24px);
+  color:var(--muted);font-weight:600;font-size:.92rem;border-bottom:1px dashed #C9D4E0}
+.card-det{font-size:.92rem;color:var(--muted)}
+/* captions outside the photo box: no card container, just the photo with text underneath */
+.card.vehicle,.card.vehicle:hover{border:0;background:none;box-shadow:none;border-radius:0;overflow:visible}
+.card.vehicle .thumb{border:1px solid #C9D4E0;border-radius:0;overflow:hidden;transition:border-color .15s ease,box-shadow .15s ease}
+.card.vehicle:hover .thumb{border-color:var(--blue);box-shadow:0 8px 22px rgba(14,36,64,.12)}
+.card.vehicle:focus-visible{outline:0}
+.card.vehicle:focus-visible .thumb{outline:3px solid var(--blue);outline-offset:2px}
+.card.vehicle .card-body{padding:12px 2px 0 !important}
+#cards{row-gap:32px}
+/* brand + sign up banner above the fleet */
+.join{margin-top:0;background:#fff;color:var(--ink);padding:104px 0 40px;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.join::before{content:"";position:absolute;left:0;right:0;top:64px;height:1px;background:var(--line)} /* thin line above the banner, matching the one below */
+.join-inner{display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px 40px}
+.join h2{font-family:'Benzin',var(--font-header);font-weight:700;font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.25;color:var(--ink)}
+.join p{margin-top:8px;font-family:'Denim',var(--font-body);font-size:1.1rem;color:var(--muted)}
+.join-actions{display:flex;gap:12px}
+/* three lines scaled together: kicker, heading, sign-up line */
+.join p.join-kicker{margin:0 0 10px;font-family:'Denim',var(--font-body);font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.35;color:var(--blue)}
+.join h2{font-size:clamp(1.1rem,1.9vw,1.4rem);color:#3A5A7A} /* lighter steel blue: a soft step between the blue line above and the grey line below */
+.join h2 + p{font-size:clamp(.98rem,1.3vw,1.05rem);color:#4677A3} /* lighter blue, same family as the top line */
+.join :focus-visible{outline-color:var(--blue)}
+.join-actions .btn{font-family:'Denim',var(--font-body);font-weight:400;font-size:1.1rem;letter-spacing:.01em}
+.join + #trips{padding-top:56px}
+#destinations .dest-lead{font-family:'Denim',var(--font-body);font-size:1.1rem;line-height:1.45}
+#trips .trips-lead{font-family:'Denim',var(--font-body);font-size:1.1rem;line-height:1.45;max-width:62ch}
+@media (max-width:600px){.join-inner{grid-template-columns:1fr}.join-actions .btn{flex:1;justify-content:center}}
+/* Popular Destinations: same look as the fleet cards */
+#destCards{grid-template-columns:repeat(3,1fr);row-gap:32px}
+@media (max-width:900px){#destCards{gap:12px}}
+@media (max-width:600px){#destCards{grid-template-columns:1fr}}
+#destinations{padding-top:56px}
+.know h3{font-family:'Benzin',var(--font-header);font-weight:700;letter-spacing:.01em;font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.3} /* same font as Popular Destinations */
+.know p{color:var(--ink);font-size:1.15rem;letter-spacing:.01em} /* captions match the destination card captions (Aspen etc.) */
+#bundle h2{font-family:'Benzin',var(--font-header);font-weight:700;letter-spacing:.01em;font-size:clamp(1.3rem,2.6vw,1.9rem)} /* same as Popular Destinations */
+#destinations h2{font-family:'Benzin',var(--font-header);font-weight:700;letter-spacing:.01em;font-size:clamp(1.3rem,2.6vw,1.9rem)}
+</style>
+<style>
+/* vehicle photo crossfade */
+.v-thumb{position:relative;background:#F4F6F9}
+.v-slide{position:absolute;inset:0;opacity:0;transition:opacity var(--v-fade,1200ms) ease;background:#000 center/cover no-repeat}
+.v-slide.is-active{opacity:1}
+.v-slide.thumb-empty{border-bottom:0;display:flex;background:repeating-linear-gradient(135deg,#F4F6F9 0 12px,#EDF1F5 12px 24px)}
+@media (prefers-reduced-motion:reduce){.v-slide{transition:none}}
+</style>
+<style>
+/* ==========================================================
+   DROP-DOWN ANNOUNCEMENT BANNER (phase one)
+   Slides down above the header, rotates the messages in
+   BANNER.messages (script at the bottom), and can be closed.
+   ========================================================== */
+:root{--banner-h:0px}
+.drop-banner{position:fixed;top:0;left:0;right:0;z-index:31;height:46px;overflow:hidden;
+  background:linear-gradient(90deg,#0A1B31 0%,#0E2440 45%,#123A63 100%);color:#fff;
+  border-bottom:1px solid rgba(255,199,44,.55);box-shadow:0 6px 22px rgba(8,20,38,.28);
+  font-family:var(--font-header);transform:translateY(-100%);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.drop-banner.is-down{transform:none}
+.drop-banner::after{content:"";position:absolute;top:0;bottom:0;left:-30%;width:25%;pointer-events:none;
+  background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.12),rgba(255,255,255,0));
+  animation:bannerShine 6s ease-in-out 1.6s infinite}
+@keyframes bannerShine{0%{left:-30%}45%,100%{left:120%}}
+.db-inner{position:relative;height:100%;display:flex;align-items:center;justify-content:center;padding:0 52px}
+.db-msg{position:absolute;inset:0 52px;display:flex;align-items:center;justify-content:center;gap:12px;
+  opacity:0;transform:translateY(8px);transition:opacity .6s ease,transform .6s ease;white-space:nowrap}
+.db-msg.is-active{opacity:1;transform:none}
+.db-icon{flex:none;display:inline-flex;color:var(--sun)}
+.db-text{font-weight:500;font-size:.98rem;letter-spacing:.02em;overflow:hidden;text-overflow:ellipsis}
+.db-short{display:none}
+.db-text b{font-weight:700;color:var(--sun)}
+.db-cta{flex:none;display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.55);color:#fff;text-decoration:none;font-weight:600;font-size:.88rem;letter-spacing:.02em;
+  transition:background-color .2s ease,color .2s ease,border-color .2s ease}
+.db-cta:hover{background:var(--sun);border-color:var(--sun);color:var(--sun-ink)}
+.db-cta2{margin-left:-6px}
+.db-close{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:32px;height:32px;border:0;border-radius:50%;
+  background:transparent;color:rgba(255,255,255,.8);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.db-close:hover{background:rgba(255,255,255,.14);color:#fff}
+.drop-banner :focus-visible{outline:2px solid var(--sun);outline-offset:2px}
+/* push the floating header and the hero down by the banner's height */
+.site-header{top:var(--banner-h);transition:top .7s cubic-bezier(.2,.8,.2,1),background-color .3s ease,border-color .3s ease,box-shadow .3s ease}
+.hero-photo{padding-top:calc(68px + var(--banner-h));transition:padding-top .7s cubic-bezier(.2,.8,.2,1)}
+html{scroll-padding-top:calc(76px + var(--banner-h))}
+@media (max-width:640px){
+  .drop-banner{height:40px}
+  .db-inner,.db-msg{padding:0;inset:0 44px 0 14px}
+  .db-msg{justify-content:flex-start;gap:8px}
+  .db-text{font-size:.84rem}
+  .db-long{display:none}.db-short{display:inline}
+  .db-cta{margin-left:auto}
+  .db-cta2{margin-left:-2px}
+  .db-cta{padding:3px 10px;font-size:.78rem}
+  .db-close{right:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  .drop-banner,.db-msg,.site-header,.hero-photo{transition:none}
+  .drop-banner::after{display:none}
+}
+</style>
+</head>
+<body>
+<!-- ============================ DROP-DOWN BANNER ============================
+     EDIT the messages in BANNER (script at the very bottom of the page). -->
+<div class="drop-banner" id="dropBanner" role="region" aria-label="Announcements" aria-hidden="true">
+  <div class="db-inner" id="dbInner"></div>
+  <button type="button" class="db-close" id="dbClose" aria-label="Close announcement">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+  </button>
+</div>
+
+<a class="skip" href="#search">Skip to trip search</a>
+
+<!-- ============================ HEADER (white bar) ============================ -->
+<header class="site-header">
+  <div class="wrap">
+    <nav class="nav" aria-label="Main">
+      <a class="brand" href="#top" id="top">
+        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="15" stroke="currentColor" stroke-width="2"/>
+          <path d="M9 21c4-1 3-9 7-9s3 8 7 9" style="stroke:var(--teal)" stroke-width="2.4" stroke-linecap="round"/>
+          <circle cx="9" cy="21" r="2" fill="currentColor"/><circle cx="23" cy="21" r="2" fill="currentColor"/>
+        </svg>
+        <!-- EDIT: your brand name -->
+        <span>Xities</span>
+      </a>
+      <div class="nav-links">
+        <a href="#search">Book a ride</a>
+        <!-- EDIT: phone number (change both the tel: link and the visible text) -->
+        <a class="call" href="tel:+18339501757" target="_top" aria-label="Call 833 950 1757">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+          <span>Call 833 950 1757</span>
+        </a>
+        <button type="button" data-open-manage>Manage booking</button>
+        <!-- EDIT: wire these up to your real sign-in / sign-up flow -->
+        <span class="nav-auth">
+          <button type="button" id="loginBtn">Log in</button>
+          <span class="nav-auth-sep" aria-hidden="true">|</span>
+          <button type="button" class="nav-login" id="signupBtn">Sign up</button>
+        </span>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <!-- HERO PHOTO (full width, under the header). Set the photo in CONFIG.scenes[n].src -->
+  <div class="hero-photo">
+    <div class="scenes" id="scenes" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-copy">
+        <!-- EDIT: announcement badge (animated). Remove this <a> to hide it. -->
+        <a class="live-badge" href="tel:+18339501757" target="_top">
+          <span class="live-dot" aria-hidden="true"></span>
+          <span class="live-text">Now accepting Reservations by phone</span>
+          <span class="live-num">833 950 1757</span>
+        </a>
+        <!-- The headline text rotates through CONFIG.phrases in the script below -->
+        <h1 aria-live="off"><span class="phrase" id="phrase">Experience
+Denver,
+the Happiest City</span></h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================= SEARCH (inset in the blue area) ========================= -->
+  <div class="wrap">
+    <div class="hero-row">
+    <section class="search" id="search" aria-label="Search">
+      <!-- Tabs are built from CONFIG.categories in the script below -->
+      <div class="tabs" id="tabs"></div>
+
+      <div id="panel-ride" aria-labelledby="tab-ride">
+      <!-- Phone-only booking (shown while CONFIG.bookByPhone is true) -->
+      <div class="phone-book" id="phoneBook" hidden>
+        <div class="pb-copy">
+          <p class="pb-title">Reservations by phone</p>
+          <p class="pb-text">Call us with your pickup, destination, date and time. We'll confirm your fare and book your ride. <button type="button" class="linkbtn" data-open-policy style="text-decoration:underline">Cancellation policy</button></p>
+        </div>
+        <a class="btn search-btn pb-call" href="tel:+18339501757" target="_top">Call 833 950 1757</a>
+      </div>
+      <form id="tripForm" novalidate>
+
+        <div class="fields">
+          <div class="f-pick"><label class="sr-only" for="pickup">From</label>
+            <input type="text" id="pickup" name="pickup" placeholder="From" autocomplete="off" maxlength="200"></div>
+          <div class="f-drop"><label class="sr-only" for="dropoff">Where to</label>
+            <input type="text" id="dropoff" name="dropoff" placeholder="Where to" autocomplete="off" maxlength="200"></div>
+          <div class="f-date"><label for="date">Date</label>
+            <input type="date" id="date" name="date"></div>
+          <div class="f-time"><label for="time">Pickup time</label>
+            <input type="time" id="time" name="time"></div>
+          <div class="f-btn"><button class="btn search-btn" id="quoteBtn" type="submit">Book now</button></div>
+          <div class="honey" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+        </div>
+
+        <p class="msg error" id="formError" role="alert" hidden></p>
+        <div id="turnstile"></div>
+      </form>
+
+      <!-- Quote result -->
+      <div class="quote" id="quote" aria-live="polite" hidden>
+        <div class="quote-top">
+          <div>
+            <p class="price-label" id="qLabel">Your fare</p>
+            <p class="price" id="qPrice"></p>
+          </div>
+          <dl class="facts">
+            <div><dt>Distance</dt><dd id="qDist"></dd></div>
+            <div><dt>Travel time</dt><dd id="qTime"></dd></div>
+          </dl>
+        </div>
+        <p class="fine" id="qHold" style="margin-top:12px"></p>
+        <div class="quote-actions">
+          <button class="btn" type="button" id="bookBtn">Book this trip</button>
+          <a class="btn" id="callBtn" href="tel:+18339501757" target="_top" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center" hidden>Call to book</a>
+          <button class="btn ghost" type="button" id="changeBtn">Change trip</button>
+        </div>
+
+        <form class="book" id="bookForm" hidden novalidate>
+          <div class="book-grid">
+            <div><label for="name">Full name</label><input type="text" id="name" name="name" autocomplete="name" maxlength="120"></div>
+            <div><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email" maxlength="200"></div>
+            <div><label for="phone">Mobile number</label><input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="30"></div>
+          </div>
+          <div class="honey" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="smsOptIn"><span>Text me updates about this trip, including a private number to reach my driver.</span></label>
+            <label class="check"><input type="checkbox" name="marketingOptIn"><span>Send me deals by email. I can unsubscribe any time.</span></label>
+          </div>
+          <p class="msg" id="bookMsg" role="status" hidden></p>
+          <div class="quote-actions">
+            <button class="btn" type="submit" id="payBtn">Continue to secure payment</button>
+          </div>
+        </form>
+      </div>
+      </div><!-- /panel-ride -->
+
+    </section>
+
+    </div>
+
+    <!-- ===== NEW WHITE CONTAINER between the search bar and Plan your experience =====
+         Runs the full width of the page, edge to edge like the hero photo and the Sign up banner.
+         Its height is 10% more than the Plan your experience box (set by the script at the bottom).
+         EDIT: put this section's content inside <div class="wrap feature-inner"> -->
+    <section class="feature" id="feature" aria-label="Featured">
+      <div class="wrap feature-inner">
+        <div class="feature-copy">
+        <!-- EDIT: section title -->
+        <h2 class="feature-title">Peace of Mind, with no match</h2>
+        <!-- EDIT: the paragraph text -->
+        <p class="feature-text">Experienced and very knowledgeable Drivers. Fulltime Drivers that know your City and State in and out. All are licensed and regulated by the Colorado Public Utility Commission. Powered by the largest network of Licensed Independent Operators.</p>
+        </div>
+      </div>
+      <!-- Square image, inset on the far right. EDIT: put your photo URL in src="" (leave empty to show the grey placeholder) -->
+      <figure class="feature-img" id="featureImg">
+        <img src="/assets/img/feature-denver-skyline.jpg" alt="Denver skyline with the Rocky Mountains behind City Park" hidden>
+        <span class="feature-img-ph" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          Image
+        </span>
+      </figure>
+    </section>
+
+    <!-- ===== SECOND CONTAINER under the search bar (like emirates.com): experiences ===== -->
+    <!-- Tiles are built from CONFIG.categories (everything except "ride"). Tapping one opens its form here. -->
+    <section class="search explore" id="explore" aria-labelledby="exploreTitle">
+      <div class="explore-head">
+        <!-- EDIT: heading and line under it -->
+        <h2 class="explore-title" id="exploreTitle">Plan your experience</h2>
+        <p class="explore-sub">To a Dinner, a game, a Concert or any Event, ride with us</p>
+      </div>
+      <div class="explore-tiles" id="exploreTiles"></div>
+      <div id="otherPanels"></div>
+    </section>
+  </div>
+
+</section>
+
+<main id="main">
+  <!-- ========================= BRAND + SIGN UP BANNER ========================= -->
+  <!-- EDIT: tagline, line under it and the two buttons. Sign up here opens the same thing as the header button. -->
+  <section class="join" id="join" aria-labelledby="joinTitle">
+    <div class="wrap join-inner">
+      <div class="join-copy">
+        <!-- EDIT: line above the heading -->
+        <p class="join-kicker">Everyone deserves a World Class experience, expect an elevated customer experience without demanding it</p>
+        <h2 id="joinTitle">Xities – Empowering Independent Businesses across Colorado</h2>
+        <p id="joinRewards">Sign up for our rewards program and save</p>
+      </div>
+      <div class="join-actions">
+        <button type="button" class="btn sun" data-signup>Sign up</button>
+      </div>
+    </div>
+  </section>
+  <!-- ========================= POPULAR TRIPS ========================= -->
+  <section class="section" id="trips">
+    <div class="wrap">
+      <h2>Best in Class Selection of Black SUVs</h2>
+      <p class="lead trips-lead">Don't compromise your standards, the only large network across the industry with universal standards for every vehicle and a clean vehicle for every rider.</p>
+      <div class="cards" id="cards"></div>
+    </div>
+  </section>
+
+  <!-- ========================= POPULAR DESTINATIONS ========================= -->
+  <!-- EDIT: heading and line below; the three destinations are in CONFIG.destinations -->
+  <section class="section" id="destinations">
+    <div class="wrap">
+      <h2>Popular Destinations</h2>
+      <p class="lead dest-lead">Serving all destinations in Colorado</p>
+      <div class="cards" id="destCards"></div>
+      <!-- Panoramic photo of Colorado. EDIT: put your photo URL in src="" and describe it in alt="" (leave src empty to show the grey placeholder) -->
+      <figure class="pano" id="pano">
+        <img src="/assets/img/pano-colorado-lake.jpg" alt="Sunset over a Colorado mountain lake and peaks" hidden>
+        <!-- EDIT: text on the photo -->
+        <figcaption class="pano-copy">
+          <div class="pano-brand">Xities</div>
+          <p class="pano-text">Enjoy your City and State by going places, connect with people and live life to the fullest, where to next?</p>
+          <div class="pano-actions">
+            <button type="button" class="btn ghost-light" data-signup>Sign up</button>
+            <a class="btn sun" href="#search">Book now</a>
+          </div>
+        </figcaption>
+        <span class="pano-ph" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 19l6-9 4 5 3-4 7 8z"/><circle cx="17" cy="6" r="2"/></svg>
+          Panoramic photo of Colorado
+        </span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========================= GOOD TO KNOW ========================= -->
+  <section class="section" aria-label="Good to know">
+    <div class="wrap know">
+      <!-- EDIT: these three blurbs -->
+      <div>
+        <h3>Best Pricing for Black SUVs</h3>
+        <p>You can't pay and be on your own, bring your expectations of an elevated customer experience, it's why we exist.</p>
+      </div>
+      <div>
+        <h3>Modify online</h3>
+        <p>Use Manage booking with your reference and email. We send a secure link to confirm the modification. <button type="button" class="linkbtn" data-open-policy style="text-decoration:underline">Cancellation policy</button></p>
+      </div>
+      <div>
+        <h3>No Phone tracking</h3>
+        <p>After your ride you can travel with peace of mind about your privacy. Unless you request the Driver's location during pick up.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= BLUE BANNER ========================= -->
+  <!-- EDIT: headline, line under it and the two buttons -->
+  <section class="bundle" id="bundle" aria-labelledby="bundleTitle">
+    <div class="wrap bundle-inner">
+      <div>
+        <h2 id="bundleTitle">Your City is calling</h2>
+        <p>Big games, dining experience and nights to remember. Ride in a Black SUV.</p>
+      </div>
+      <div class="bundle-actions">
+        <a class="btn sun" href="#explore">Plan your experience</a>
+        <a class="btn ghost-light" href="tel:+18339501757" target="_top">Call 833 950 1757</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CLOSING PHOTOS (three) =========================
+       EDIT: heading, line under it, and each photo's title and line.
+       Photos: put a photo URL in src="". Left empty, each one borrows the matching
+       Plan your experience photo (Sports, Concerts, Events). -->
+  <section class="vibe" id="vibe" aria-labelledby="bundleTitle">
+    <div class="wrap">
+      <div class="vibe-grid">
+        <a class="vibe-card" href="#explore" data-open-tile="sports">
+          <span class="vibe-pic"><img src="/assets/img/game-day-1.jpg" alt="Football player running with the ball in front of a packed stadium" style="object-position:55% 50%"></span>
+          <span class="vibe-copy"><span class="vibe-title">Game Day</span><span class="vibe-line">Skip the parking. Catch every play.</span></span>
+        </a>
+        <a class="vibe-card" href="#explore" data-open-tile="dining">
+          <span class="vibe-pic"><img src="/assets/img/dining-1.jpg" alt="Friends laughing and toasting with red wine at an outdoor restaurant table" style="object-position:58% 50%"></span>
+          <span class="vibe-copy"><span class="vibe-title">Denver is now a World Class Dining Destination</span><span class="vibe-line">Enjoy the wine. We'll do the driving.</span></span>
+        </a>
+        <a class="vibe-card" href="#explore" data-open-tile="shows">
+          <span class="vibe-pic"><img src="/assets/img/night-out-1.jpg" alt="Woman in a sequined top getting ready at a mirror for a night out"></span>
+          <span class="vibe-copy"><span class="vibe-title">Night Out</span><span class="vibe-line">Celebrate. We'll get you home.</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">Xities</div>
+        <div class="foot-brand-sub">By XCA Ltd</div>
+        <p>Empowering Independent Businesses</p>
+        <p class="foot-area">Serving Colorado</p>
+      </div>
+      <div>
+        <h3>Book</h3>
+        <ul>
+          <li><a href="#search">Book a ride</a></li>
+          <li><a href="#explore">Plan an experience</a></li>
+          <li><button type="button" class="linkbtn" data-open-manage>Manage booking</button></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Company</h3>
+        <ul>
+          <li><a href="#">About us</a></li>
+          <li><a href="tel:+18339501757" target="_top">Call 833 950 1757</a></li>
+          <li><a href="#">Help center</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <ul>
+          <li><a href="#">Terms of service</a></li>
+          <li><button type="button" class="linkbtn" data-open-privacy>Privacy policy</button></li>
+          <li><button type="button" class="linkbtn" data-open-policy>Cancellation policy</button></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>&copy; <span id="year"></span> Xities. All rights reserved.</span>
+      <span id="stripeNote">Payments are processed securely by Stripe.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ======================= MANAGE BOOKING ======================= -->
+<dialog id="privacy" aria-labelledby="privacyTitle" style="max-width:680px;max-height:calc(100vh - 48px);overflow:auto">
+  <p class="fine" style="margin:0 0 4px;letter-spacing:.04em;text-transform:uppercase">XCA Ltd</p>
+  <h2 id="privacyTitle" tabindex="-1" autofocus>Privacy Statement</h2>
+  <!-- EDIT: privacy text. Have it reviewed before relying on it. -->
+  <div class="policy-body">
+    <p>XCA Ltd, doing business as Xities or Xities.com (&ldquo;we&rdquo; or &ldquo;us&rdquo;), values you as our customer and recognizes that privacy is important to all of us. This Privacy Statement explains how we collect, use and disclose personal data when you use our website and ride services, your rights in deciding what we do with the data we collect or hold about you, and how to contact us.</p>
+    <h3>Privacy Statement Summary</h3>
+    <h4>What does this Privacy Statement cover?</h4>
+    <p>It covers personal data we handle when you visit Xities.com, call us to book a ride, sign up for offers, or ride with a driver in our network of licensed independent operators in Colorado.</p>
+    <h4>What personal data do we collect, and how?</h4>
+    <ul class="policy-list">
+      <li><strong>Data you give us:</strong> your name, phone number, email address, pickup and drop-off locations, and trip date and time when you book, plus anything you share when you contact us or sign up for offers.</li>
+      <li><strong>Data we collect automatically:</strong> basic device and browser information, your approximate location based on your internet connection (so we can confirm you are in our service area), and cookies or similar technology, with your consent where consent is required.</li>
+      <li><strong>Data from others:</strong> information from our service providers, such as payment confirmations and trip status from drivers and dispatch.</li>
+    </ul>
+    <h4>How do we use it?</h4>
+    <p>To quote, book, dispatch and complete your rides; to let you and your driver reach each other; to take payment; to send trip updates; to send offers if you asked for them; to prevent fraud; to meet our legal and regulatory obligations; and to improve our service.</p>
+    <h4>When is your personal data shared?</h4>
+    <p>We share personal data only as needed to provide your ride and run our business: with the licensed driver assigned to your trip; with service providers that act for us, such as payment processing, calls and text messaging, email, mapping and location services, and website hosting; and when the law requires it. Calls and texts between you and your driver go through a private relay number, so your personal phone number is not shown to the driver. We do not sell your personal data.</p>
+    <h4>What are your rights and choices?</h4>
+    <p>You can opt out of marketing emails at any time with the &ldquo;unsubscribe&rdquo; link in any marketing email, and opt out of texts by replying STOP. You can also ask us to access, correct or delete the personal data we hold about you. Colorado residents have additional rights under the Colorado Privacy Act where it applies.</p>
+    <h4>How to contact us</h4>
+    <p>Questions about how we handle your personal data, or a request about your data? Call us at <a href="tel:+18339501757" target="_top">833 950 1757</a>.</p>
+  </div>
+  <div class="dlg-actions">
+    <button type="button" class="btn" id="privacyClose">Close</button>
+  </div>
+</dialog>
+<dialog id="policy" aria-labelledby="policyTitle" style="max-width:640px;max-height:calc(100vh - 48px);overflow:auto">
+  <p class="fine" style="margin:0 0 4px;letter-spacing:.04em;text-transform:uppercase">XCA Ltd Policy Details</p>
+  <h2 id="policyTitle" tabindex="-1" autofocus>Cancellation Policy</h2>
+  <!-- EDIT: policy text. One <li> per point. -->
+  <ul class="policy-list">
+    <li><strong>Free cancellation window.</strong> You can typically cancel a ride request for free within a short window (usually 2 to 5 minutes) after the driver accepts, provided they have not yet arrived or aren't significantly close.</li>
+    <li><strong>When fees apply.</strong> A cancellation charge is triggered if you cancel after the grace period, once the driver is on their way, or if the driver arrives and you do not show up (no-show).</li>
+    <li><strong>Fee amounts.</strong> Premium ride types like SUVs and Black generally feature higher cancellation and no-show fees. The exact dollar amount varies by market, time, and distance traveled by the driver before the cancellation.</li>
+    <li><strong>Scheduled rides.</strong> For pre-scheduled rides, you can cancel without penalty up to 60 minutes before the scheduled pickup time. Canceling within that 60-minute window results in a fee.</li>
+    <li><strong>Weather, traffic and your confirmation email.</strong> Bad weather and traffic conditions affect the driver's ability to be on schedule. This policy applies in real time when you are booking. A disclosure in the email confirming your trip overrides any other web disclosure regarding this policy. Where no email disclosure is issued when confirming your booking, our standard cancellation policy applies.</li>
+  </ul>
+  <div class="dlg-actions">
+    <button type="button" class="btn" id="policyClose">Close</button>
+  </div>
+</dialog>
+<dialog id="manage" aria-labelledby="manageTitle">
+  <form id="manageForm" novalidate>
+    <h2 id="manageTitle">Manage booking</h2>
+    <p class="lead">Enter your booking reference and email. We'll send a secure link to view or modify your trip.</p>
+    <div class="field"><label for="ref">Booking reference</label><input type="text" id="ref" name="reference" maxlength="40" autocomplete="off"></div>
+    <div class="field"><label for="mEmail">Email</label><input type="email" id="mEmail" name="email" autocomplete="email" maxlength="200"></div>
+    <div class="honey" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+    <p class="msg" id="manageMsg" role="status" hidden></p>
+    <div class="dlg-actions">
+      <button type="button" class="btn ghost" id="manageClose">Close</button>
+      <button type="submit" class="btn" id="manageBtn">Send link</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+/* ==========================================================================
+   CONFIG: quick edits live here. Change text, timing, images and prices
+   without touching the rest of the code.
+   ========================================================================== */
+const CONFIG = {
+  // true = the search bar books by phone only (no address fields). Set to false when online booking goes live.
+  bookByPhone: true,
+
+  // Your backend URL (for example your Cloudflare Worker). Leave "" to run in DEMO mode
+  // with fake prices and no data sent anywhere.
+  apiBase: "",
+  requestTimeoutMs: 10000,
+
+  // Optional Cloudflare Turnstile site key (the public one). Leave "" to skip the bot check.
+  turnstileSiteKey: "",
+
+  currency: "USD",
+  locale: "en-US",
+  units: "mi",          // "mi" or "km"
+
+  // ---- Search bar tabs. Edit labels, fields, button text here. ----
+  // "ride" uses the ride form above. The other tabs get a form built from "fields"
+  // (type: text, date, time, or count for a 1..max dropdown; span: 4 = third of a row, 6 = half).
+  // ---- Vehicle choices in the search bar header, after "Book a ride". Edit labels here. ----
+  // demoFactor only changes the preview price while apiBase is empty; your backend sets real prices.
+  rideTypes: [
+    { id: "black-suv", label: "Black SUV", demoFactor: 1 },
+    { id: "suv",       label: "SUV",       demoFactor: 0.85 },
+    { id: "party-bus", label: "Party Bus", demoFactor: 2.5 }
+  ],
+  categories: [
+    { id: "ride", label: "Book a ride" },
+    // photo: optional tile picture (URL or data), photoPosition: which part stays in view
+    { id: "dining", label: "Dining", button: "Find dining",
+      photo: "/assets/img/tile-dining.jpg" /* Adobe Stock (licensed) */, photoPosition: "54% 95%", photoZoom: "auto 175%", fields: [
+      { name: "query", label: "Restaurant or cuisine", type: "text", placeholder: "Restaurant name or cuisine", span: 6 },
+      { name: "city",  label: "City or neighborhood",  type: "text", placeholder: "Where to?", span: 6 },
+      { name: "date",  label: "Date", type: "date", span: 3 },
+      { name: "time",  label: "Time", type: "time", span: 3 },
+      { name: "guests", label: "Guests", type: "count", max: 12, noun: "guest", span: 3 } ] },
+    { id: "business-events", label: "Business", button: "Find venues",
+      photo: "/assets/img/tile-business.jpg" /* Adobe Stock (licensed) */, photoPosition: "58% 30%", photoZoom: "auto 150%", fields: [
+      { name: "query", label: "Event type or venue", type: "text", placeholder: "From", span: 6 },
+      { name: "city",  label: "City", type: "text", placeholder: "Where to?", span: 6 },
+      { name: "date",  label: "Date", type: "date", span: 4 },
+      { name: "guests", label: "Guests", type: "count", max: 50, noun: "guest", span: 4 } ] },
+    { id: "sports", label: "Sports", button: "Find games",
+      photo: "/assets/img/tile-sports.jpg" /* Adobe Stock (licensed) */, photoPosition: "50% 38%", photoZoom: "auto 150%", fields: [
+      { name: "query", label: "Team, league or venue", type: "text", placeholder: "Which game?", span: 6 },
+      { name: "city",  label: "City", type: "text", placeholder: "Where to?", span: 6 },
+      { name: "date",  label: "Date", type: "date", span: 4 },
+      { name: "tickets", label: "Tickets", type: "count", max: 10, noun: "ticket", span: 4 } ] },
+    { id: "concerts", label: "Concerts", button: "Find concerts",
+      photo: "/assets/img/tile-concerts.jpg" /* Adobe Stock (licensed) */, photoPosition: "center 55%", fields: [
+      { name: "query", label: "Artist or venue", type: "text", placeholder: "Who do you want to see?", span: 6 },
+      { name: "city",  label: "City", type: "text", placeholder: "Where to?", span: 6 },
+      { name: "date",  label: "Date", type: "date", span: 4 },
+      { name: "tickets", label: "Tickets", type: "count", max: 10, noun: "ticket", span: 4 } ] },
+    { id: "shows", label: "Events", button: "Find events",
+      photo: "/assets/img/tile-events.jpg" /* Adobe Stock (licensed) */, photoPosition: "50% 35%", photoZoom: "auto 140%", fields: [
+      { name: "query", label: "Show or theater", type: "text", placeholder: "Which show?", span: 6 },
+      { name: "city",  label: "City", type: "text", placeholder: "Where to?", span: 6 },
+      { name: "date",  label: "Date", type: "date", span: 4 },
+      { name: "tickets", label: "Tickets", type: "count", max: 10, noun: "ticket", span: 4 } ] }
+  ],
+  quoteHoldMinutes: 15, // text shown under the price; your backend should enforce it
+
+  // ---- Animation timing (milliseconds) ----
+  timing: {
+    phraseEveryMs: 4500,  // how often the headline sentence changes
+    phraseFadeMs: 600,    // fade out / fade in time for the headline
+    sceneEveryMs: 6500,   // how often the background image changes
+    sceneFadeMs: 1600     // crossfade time between background images
+  },
+
+  // ---- Headline sentences (they replace each other in this order) ----
+  // Each sentence is a list of lines. A line can be plain text, or { text, size }
+  // where size is relative to the headline (0.7 = 30% smaller, 1.2 = 20% bigger).
+  phrases: [
+    [ { text: "Experience", size: 0.7 }, "Denver,", { text: "the Happiest City", size: 0.7 } ],
+    [ { text: "Book", size: 0.7 }, "Your next ride", { text: "here", size: 0.7 } ],
+    [ { text: "Only SUVs", size: 0.7 }, "Licensed Operators", { text: "World Class Service", size: 0.7 } ]
+    // add your next sentences here, each in quotes with a comma after the one before it
+  ],
+
+  // ---- HERO PHOTOS (full width under the header, like emirates.com). ----
+  // One photo = a still hero. Two or more = they crossfade every sceneEveryMs.
+  // Best size: 2400 x 1000 px or wider, subject in the middle (edges crop on phones).
+  // ---- Add "src" with a photo URL to use a picture; ----
+  // the gradient shows while it loads or if you leave src empty.
+  scenes: [
+    { src: "/assets/img/hero-denver-skyline.jpg", position: "center 58%", gradient: "linear-gradient(160deg,#0E2440 0%,#1B4F86 55%,#2F6FA8 100%)" }
+  ],
+
+  // ---- Side banner next to the search card (balances the layout, like alaskaair.com). ----
+  // Add "src" with a photo URL on any image to use a picture; the gradient shows while
+  // it loads or if you leave src empty. Cycles the same way the hero background does.
+  sideBanner: {
+    images: [
+      { src: "", gradient: "linear-gradient(160deg,#0E2440 0%,#1B4F86 55%,#2F6FA8 100%)", label: "Add photo 1 of 3" },
+      { src: "", gradient: "linear-gradient(160deg,#0B3B4F 0%,#14899B 60%,#2AA6A0 100%)", label: "Add photo 2 of 3" },
+      { src: "", gradient: "linear-gradient(160deg,#241B3F 0%,#4B3F8C 60%,#6A5BB0 100%)", label: "Add photo 3 of 3" }
+    ]
+  },
+
+  // ---- Fleet cards: "Best in Class Selection of Black SUVs" (two rows of three on desktop) ----
+  // For each vehicle: name (the only caption shown) and photos. A photo can also be { src, name }:
+  // the caption then changes to that name while the photo shows (used to share one card between two SUVs).
+  //: three photo URLs (or data)
+  // that fade into each other. Leave a photo "" to show its placeholder.
+  vehicles: [
+    { name: "Cadillac Escalade", photos: [{ src: "/assets/img/fleet-cadillac-escalade-1.jpg", name: "Cadillac Escalade" }, { src: "/assets/img/fleet-cadillac-escalade-2.jpg", name: "Cadillac Escalade" }, { src: "/assets/img/fleet-cadillac-escalade-3.jpg", name: "Cadillac Escalade" }, { src: "/assets/img/fleet-lincoln-navigator-1.jpg", name: "Lincoln Navigator" }, { src: "/assets/img/fleet-lincoln-navigator-2.jpg", name: "Lincoln Navigator" }] },
+    { name: "Tesla Model X", photos: [{ src: "/assets/img/fleet-tesla-model-x-1.jpg", name: "Tesla Model X" }, { src: "/assets/img/fleet-tesla-model-x-2.jpg", name: "Tesla Model X" }, { src: "/assets/img/fleet-tesla-model-x-3.jpg", name: "Tesla Model X" }, { src: "/assets/img/fleet-chevrolet-suburban-1.jpg", name: "Chevrolet Suburban" }, { src: "/assets/img/fleet-chevrolet-suburban-2.jpg", name: "Chevrolet Suburban" }] },
+    { name: "Cadillac Escalade IQ", photos: [{ src: "/assets/img/fleet-cadillac-escalade-iq-1.jpg", name: "Cadillac Escalade IQ" }, { src: "/assets/img/fleet-cadillac-escalade-iq-2.jpg", name: "Cadillac Escalade IQ" }, { src: "/assets/img/fleet-cadillac-escalade-iq-3.jpg", name: "Cadillac Escalade IQ" }, { src: "/assets/img/fleet-jeep-grand-wagoneer-1.jpg", name: "Jeep Grand Wagoneer" }, { src: "/assets/img/fleet-jeep-grand-wagoneer-2.jpg", name: "Jeep Grand Wagoneer" }] }
+  ],
+  // ---- Popular Destinations (one row of three, below the fleet) ----
+  // name: caption under the photo; address: what goes into "Where to" when the card is clicked;
+  // photos: up to three photos that fade into each other ("" shows a placeholder). A photo can also be
+  // { src, name, address } to share one card between two places, like the vehicle cards.
+  destinations: [
+    { name: "Denver International Airport", address: "Denver International Airport, 8500 Peña Blvd, Denver, CO 80249", photos: ["/assets/img/dest-denver-airport.jpg"] },
+    { name: "Aspen", address: "Aspen, CO 81611", photos: ["/assets/img/dest-aspen.jpg"] },
+    { name: "Vail", address: "Vail, CO 81657", photos: ["/assets/img/dest-vail.jpg"] }
+  ],
+  vehicleFade: { everyMs: 4000, fadeMs: 1200, staggerMs: 650 }, // photo change timing on the vehicle cards
+  vehicleButton: "Book this SUV",
+
+  // ---- Bundle savings box (display only. Your backend sets the real price) ----
+  // Placeholder copy and sample fares: replace with your real bundle offer.
+  bundle: {
+    percent: 10,
+    text: "Add a ride to dinner, an event or a game and save {percent}%.",
+    examples: [ { label: "Ride", cents: 3000 }, { label: "Dining experience", cents: 6000 } ]
+  },
+
+  // ---- DEMO pricing, used only when apiBase is empty ----
+  demo: { base: 6, perKm: 1.9, perMin: 0.55 }
+};
+
+/* ==========================================================================
+   Everything below is the page logic. You normally don't need to edit it.
+   ========================================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const isDemo = !CONFIG.apiBase;
+const state = { quote: null, trip: null, tsWidget: null };
+
+document.documentElement.style.setProperty("--scene-fade", CONFIG.timing.sceneFadeMs + "ms");
+document.documentElement.style.setProperty("--phrase-fade", CONFIG.timing.phraseFadeMs + "ms");
+$("#year").textContent = new Date().getFullYear();
+
+// While no backend is connected, make it clear rides are booked by phone for now.
+if (isDemo) {
+  const fine = $("#panel-ride .fine");
+  if (fine) fine.textContent = "Now accepting ride reservations in Colorado — call 833 950 1757 to book.";
+  const sn = document.getElementById("stripeNote");
+  if (sn) sn.hidden = true; // online payment isn't live yet
+}
+
+/* ---------- formatting ---------- */
+const money = cents => new Intl.NumberFormat(CONFIG.locale, { style: "currency", currency: CONFIG.currency }).format(cents / 100);
+const fmtDist = m => CONFIG.units === "km" ? (m / 1000).toFixed(1) + " km" : (m / 1609.344).toFixed(1) + " mi";
+const fmtDur = s => {
+  const min = Math.max(1, Math.round(s / 60));
+  return min < 60 ? min + " min" : Math.floor(min / 60) + " h " + String(min % 60).padStart(2, "0") + " min";
+};
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const show = (el, text, kind) => { el.textContent = text; el.className = "msg" + (kind ? " " + kind : ""); el.hidden = false; };
+const hide = el => { el.hidden = true; el.textContent = ""; };
+
+/* ---------- header: see-through over the photo, white bar after scrolling ---------- */
+(function headerScroll() {
+  const h = $(".site-header");
+  const update = () => h.classList.toggle("is-scrolled", window.scrollY > 40);
+  window.addEventListener("scroll", update, { passive: true });
+  update();
+})();
+
+/* ---------- search bar: dark text once a date/time/count is chosen ---------- */
+document.addEventListener("input", e => {
+  const t = e.target;
+  if (t.closest && t.closest(".search .fields") && t.matches("input[type=date],input[type=time],select")) t.classList.toggle("has-value", !!t.value);
+});
+
+/* ---------- background image crossfade ---------- */
+(function scenes() {
+  const wrap = $("#scenes");
+  const els = CONFIG.scenes.map((s, i) => {
+    const d = document.createElement("div");
+    d.className = "scene" + (i === 0 ? " is-active" : "");
+    d.style.background = s.src ? `url("${s.src}") ${s.position || "center"}/cover no-repeat, ${s.gradient}` : s.gradient;
+    wrap.appendChild(d);
+    return d;
+  });
+  if (!CONFIG.scenes.some(s => s.src)) {
+    const hint = document.createElement("div");
+    hint.className = "photo-hint";
+    hint.textContent = "Hero photo goes here (CONFIG.scenes)";
+    wrap.appendChild(hint);
+  }
+  if (reduceMotion || els.length < 2) return;
+  let i = 0;
+  const step = () => setTimeout(() => {
+    els[i].classList.remove("is-active");
+    i = (i + 1) % els.length;
+    els[i].classList.add("is-active");
+    step();
+  }, CONFIG.timing.sceneEveryMs);
+  step();
+})();
+
+/* ---------- side banner crossfade (placeholder photo, cycles through 3 images) ---------- */
+(function sideBanner() {
+  const wrap = $("#sideBanner");
+  if (!wrap) return;
+  const imgs = CONFIG.sideBanner.images;
+  const els = imgs.map((img, i) => {
+    const d = document.createElement("div");
+    d.className = "side-scene" + (i === 0 ? " is-active" : "");
+    d.style.background = img.src ? `url("${img.src}") center/cover no-repeat, ${img.gradient}` : img.gradient;
+    wrap.appendChild(d);
+    return d;
+  });
+  const label = document.createElement("div");
+  label.className = "side-banner-label";
+  wrap.appendChild(label);
+  const setLabel = i => { label.textContent = imgs[i].src ? "" : (imgs[i].label || ""); };
+  setLabel(0);
+  if (reduceMotion || els.length < 2) return;
+  let i = 0;
+  const step = () => setTimeout(() => {
+    els[i].classList.remove("is-active");
+    i = (i + 1) % els.length;
+    els[i].classList.add("is-active");
+    setLabel(i);
+    step();
+  }, CONFIG.timing.sceneEveryMs);
+  step();
+})();
+
+/* ---------- headline sentence swap ---------- */
+(function phrases() {
+  const el = $("#phrase");
+  const list = CONFIG.phrases;
+  if (!list.length) return;
+  const render = p => {
+    const lines = Array.isArray(p) ? p : String(p).split("\n");
+    el.textContent = "";
+    lines.forEach(ln => {
+      const s = document.createElement("span");
+      s.className = "phrase-line";
+      s.textContent = typeof ln === "string" ? ln : ln.text;
+      if (ln && ln.size) s.style.fontSize = ln.size + "em";
+      el.appendChild(s);
+    });
+  };
+  render(list[0]);
+  if (reduceMotion || list.length < 2) return;
+  let i = 0;
+  const step = () => setTimeout(() => {
+    el.classList.add("is-out");
+    setTimeout(() => {
+      i = (i + 1) % list.length;
+      render(list[i]);
+      el.classList.remove("is-out");
+      step();
+    }, CONFIG.timing.phraseFadeMs);
+  }, CONFIG.timing.phraseEveryMs);
+  step();
+})();
+
+/* ---------- API helper (all real work happens on your backend) ---------- */
+async function api(path, body) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), CONFIG.requestTimeoutMs);
+  try {
+    const res = await fetch(CONFIG.apiBase.replace(/\/$/, "") + path, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+      signal: ctrl.signal
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.error || "Something went wrong. Try again.");
+    return data;
+  } catch (e) {
+    if (e.name === "AbortError") throw new Error("The request took too long. Try again.");
+    throw e;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+/* ---------- optional Cloudflare Turnstile bot check ---------- */
+if (CONFIG.turnstileSiteKey) {
+  const s = document.createElement("script");
+  s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+  s.async = true;
+  s.onload = () => { state.tsWidget = window.turnstile.render("#turnstile", { sitekey: CONFIG.turnstileSiteKey }); };
+  document.head.appendChild(s);
+}
+const tsToken = () => (window.turnstile && state.tsWidget !== null) ? window.turnstile.getResponse(state.tsWidget) : "";
+const tsReset = () => { if (window.turnstile && state.tsWidget !== null) window.turnstile.reset(state.tsWidget); };
+
+/* ---------- form setup ---------- */
+const form = $("#tripForm");
+const todayStr = new Date().toLocaleDateString("en-CA");
+$("#date").min = todayStr;
+
+
+function collect() {
+  const f = new FormData(form);
+  return {
+    pickup: (f.get("pickup") || "").trim(),
+    dropoff: (f.get("dropoff") || "").trim(),
+    date: f.get("date"), time: f.get("time"),
+    vehicleType: state.rideType || "",
+    website: f.get("website") || ""
+  };
+}
+function validate(d) {
+  if (!d.pickup) return "Enter where you're starting from.";
+  if (!d.dropoff) return "Enter where you're going.";
+  if (d.pickup.toLowerCase() === d.dropoff.toLowerCase()) return "From and Where to can't be the same place.";
+  if (!d.date) return "Choose a date.";
+  if (!d.time) return "Choose a pickup time.";
+  const start = new Date(`${d.date}T${d.time}`);
+  if (start <= new Date()) return "Choose a pickup time in the future.";
+  return "";
+}
+
+/* ---------- demo pricing (only when apiBase is empty) ---------- */
+function demoQuote(d) {
+  let h = 0;
+  for (const c of (d.pickup + "|" + d.dropoff).toLowerCase()) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  const km = 4 + (h % 380) / 10;
+  const meters = Math.round(km * 1000);
+  const seconds = Math.round(km / 35 * 3600 + 300);
+  const vt = (CONFIG.rideTypes || []).find(v => v.id === d.vehicleType);
+  const one = (CONFIG.demo.base + CONFIG.demo.perKm * km + CONFIG.demo.perMin * seconds / 60) * 100 * ((vt && vt.demoFactor) || 1);
+  return {
+    quoteId: "demo", distanceMeters: meters, durationSeconds: seconds,
+    priceCents: Math.round(one), currency: CONFIG.currency
+  };
+}
+
+/* ---------- quote flow ---------- */
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const err = $("#formError"); hide(err);
+  const data = collect();
+  const problem = validate(data);
+  if (problem) { show(err, problem, "error"); return; }
+  const btn = $("#quoteBtn");
+  btn.disabled = true; btn.textContent = "One moment…";
+  try {
+    let quote;
+    if (isDemo) { await sleep(400); quote = demoQuote(data); }
+    else quote = await api("/quote", { ...data, turnstileToken: tsToken() });
+    state.quote = quote; state.trip = data;
+    renderQuote();
+  } catch (ex) {
+    show(err, ex.message, "error");
+  } finally {
+    btn.disabled = false; btn.textContent = "Book now";
+    tsReset();
+  }
+});
+
+function renderQuote() {
+  const q = state.quote;
+  const vt = (CONFIG.rideTypes || []).find(v => v.id === (state.trip && state.trip.vehicleType));
+  const factsBox = $("#quote .facts");
+  if (isDemo) {
+    // Call-to-book mode (no backend yet): never show an estimated price.
+    $("#qLabel").textContent = vt ? `Your ride · ${vt.label}` : "Your ride";
+    $("#qPrice").innerHTML = '<a href="tel:+18339501757" target="_top" style="color:inherit;text-decoration:none">Call 833 950 1757</a>';
+    if (factsBox) factsBox.hidden = true;
+    const t = state.trip || {};
+    $("#qHold").textContent = `${t.pickup || ""} → ${t.dropoff || ""}${t.date ? " · " + new Date(t.date + "T12:00").toLocaleDateString(CONFIG.locale, { weekday: "short", month: "short", day: "numeric" }) : ""}${t.time ? " at " + new Date("2000-01-01T" + t.time).toLocaleTimeString(CONFIG.locale, { hour: "numeric", minute: "2-digit" }) : ""}. Call us with these trip details and we'll confirm your fare and book your ride.`;
+    $("#qHold").insertAdjacentHTML("beforeend", ' <button type="button" class="linkbtn" data-open-policy style="text-decoration:underline">Cancellation policy</button>');
+    $("#qHold").querySelector("[data-open-policy]").addEventListener("click", () => $("#policy").showModal());
+    $("#quote").hidden = false;
+    $("#bookForm").hidden = true;
+    $("#bookBtn").hidden = true;
+    $("#callBtn").hidden = false;
+  } else {
+    $("#qLabel").textContent = vt ? `Your fare · ${vt.label}` : "Your fare";
+    $("#qPrice").textContent = money(q.priceCents);
+    $("#qDist").textContent = fmtDist(q.distanceMeters);
+    $("#qTime").textContent = fmtDur(q.durationSeconds);
+    if (factsBox) factsBox.hidden = false;
+    $("#qHold").textContent = `This price is held for ${CONFIG.quoteHoldMinutes} minutes.`;
+    $("#quote").hidden = false;
+    $("#bookForm").hidden = true;
+    $("#bookBtn").hidden = false;
+    $("#callBtn").hidden = true;
+  }
+  hide($("#bookMsg"));
+  $("#quote").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
+}
+
+$("#bookBtn").addEventListener("click", () => {
+  $("#bookForm").hidden = false;
+  $("#bookBtn").hidden = true;
+  $("#name").focus();
+});
+$("#changeBtn").addEventListener("click", () => {
+  $("#quote").hidden = true;
+  state.quote = null;
+  $("#pickup").focus();
+});
+
+/* ---------- booking (backend creates the Stripe Checkout Session) ---------- */
+$("#bookForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = new FormData(e.target), msg = $("#bookMsg");
+  hide(msg);
+  const body = {
+    quoteId: state.quote.quoteId,
+    name: (f.get("name") || "").trim(),
+    email: (f.get("email") || "").trim(),
+    phone: (f.get("phone") || "").trim(),
+    smsOptIn: f.get("smsOptIn") === "on",
+    marketingOptIn: f.get("marketingOptIn") === "on",
+    website: f.get("website") || ""
+  };
+  if (!body.name) return show(msg, "Enter your full name.", "error");
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(body.email)) return show(msg, "Enter a valid email address.", "error");
+  if (body.phone.replace(/\D/g, "").length < 7) return show(msg, "Enter a mobile number so your driver can reach you.", "error");
+  const btn = $("#payBtn");
+  btn.disabled = true; btn.textContent = "Preparing payment…";
+  try {
+    if (isDemo) {
+      await sleep(500);
+      show(msg, "Online payment is launching soon. Call 833 950 1757 with this fare and we'll book your ride over the phone.", "ok");
+    } else {
+      const { checkoutUrl } = await api("/booking", body);
+      goTo(checkoutUrl);
+    }
+  } catch (ex) {
+    show(msg, ex.message, "error");
+  } finally {
+    btn.disabled = false; btn.textContent = "Continue to secure payment";
+  }
+});
+function goTo(url) {
+  // Stripe Checkout can't load inside an iframe, so always open it in the top window.
+  try { window.top.location.href = url; }
+  catch (_) { window.open(url, "_blank", "noopener"); }
+}
+
+/* ---------- fleet: Best in Class Selection of Black SUVs ---------- */
+const vehicleSlides = [];
+(function fleet() {
+  const wrap = $("#cards");
+  CONFIG.vehicles.forEach(v => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "card vehicle";
+    const thumb = document.createElement("div");
+    thumb.className = "thumb v-thumb";
+    const pics = (v.photos && v.photos.length ? v.photos : [""]);
+    const names = pics.map(p => (p && typeof p === "object" && p.name) || v.name);
+    const slides = pics.map((p, k) => {
+      const src = p && typeof p === "object" ? p.src : p;
+      const sl = document.createElement("div");
+      sl.className = "v-slide" + (k === 0 ? " is-active" : "") + (src ? "" : " thumb-empty");
+      if (src) sl.style.backgroundImage = `url("${src}")`;
+      else sl.textContent = `Add vehicle photo ${k + 1} of ${pics.length}`;
+      thumb.appendChild(sl);
+      return sl;
+    });
+    slides.names = names;
+    vehicleSlides.push(slides);
+    const body = document.createElement("div");
+    body.className = "card-body";
+    const title = document.createElement("span"); title.className = "card-title"; title.textContent = names[0];
+    slides.title = title;
+    body.append(title); // name only: no details or "Book this SUV" line (a specific vehicle needs advance notice)
+    b.append(thumb, body);
+    b.setAttribute("aria-label", [...new Set(names)].join(" or "));
+    b.addEventListener("click", () => {
+      activateTab("ride");
+      $("#search").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      setTimeout(() => $("#pickup").focus({ preventScroll: true }), 350);
+    });
+    wrap.appendChild(b);
+  });
+})();
+/* ---------- brand banner: Sign up does the same as the header button ---------- */
+document.querySelectorAll("[data-signup]").forEach(b => b.addEventListener("click", () => $("#signupBtn").click()));
+
+/* ---------- Popular Destinations: same fading cards; a click fills in "Where to" ---------- */
+(function destinations() {
+  const wrap = $("#destCards");
+  if (!wrap || !CONFIG.destinations) return;
+  CONFIG.destinations.forEach(d => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "card vehicle dest";
+    const thumb = document.createElement("div");
+    thumb.className = "thumb v-thumb";
+    const pics = (d.photos && d.photos.length ? d.photos : [""]);
+    const names = pics.map(p => (p && typeof p === "object" && p.name) || d.name);
+    const addrs = pics.map(p => (p && typeof p === "object" && p.address) || d.address || d.name);
+    const slides = pics.map((p, k) => {
+      const src = p && typeof p === "object" ? p.src : p;
+      const sl = document.createElement("div");
+      sl.className = "v-slide" + (k === 0 ? " is-active" : "") + (src ? "" : " thumb-empty");
+      if (src) sl.style.backgroundImage = `url("${src}")`;
+      else sl.textContent = `Add destination photo ${k + 1} of ${pics.length}`;
+      thumb.appendChild(sl);
+      return sl;
+    });
+    const body = document.createElement("div");
+    body.className = "card-body";
+    const title = document.createElement("span"); title.className = "card-title"; title.textContent = names[0];
+    body.append(title);
+    b.append(thumb, body);
+    slides.names = names; slides.title = title;
+    vehicleSlides.push(slides);
+    b.setAttribute("aria-label", [...new Set(names)].join(" or ") + ". Set as destination");
+    b.addEventListener("click", () => {
+      const i = Math.max(0, slides.findIndex(s => s.classList.contains("is-active")));
+      activateTab("ride");
+      const drop = $("#dropoff");
+      drop.value = addrs[i];
+      drop.dispatchEvent(new Event("input", { bubbles: true }));
+      drop.dispatchEvent(new Event("change", { bubbles: true }));
+      $("#search").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
+      setTimeout(() => $("#pickup").focus({ preventScroll: true }), 350);
+    });
+    wrap.appendChild(b);
+  });
+})();
+/* vehicle photos: each card fades through its photos; cards start a little apart */
+(function vehicleFades() {
+  const t = CONFIG.vehicleFade;
+  document.documentElement.style.setProperty("--v-fade", t.fadeMs + "ms");
+  if (reduceMotion) return;
+  vehicleSlides.forEach((slides, c) => {
+    if (slides.length < 2) return;
+    let i = 0;
+    setTimeout(() => setInterval(() => {
+      slides[i].classList.remove("is-active");
+      const prev = slides.names[i];
+      i = (i + 1) % slides.length;
+      slides[i].classList.add("is-active");
+      const next = slides.names[i];
+      if (next !== prev) { // fade the caption out, swap the name, fade it back in with the photo
+        slides.title.classList.add("is-swapping");
+        setTimeout(() => { slides.title.textContent = next; slides.title.classList.remove("is-swapping"); }, t.fadeMs / 2);
+      }
+    }, t.everyMs), c * t.staggerMs);
+  });
+})();
+
+/* ---------- blue banner: intentionally plain, reserved for future content ---------- */
+
+/* ---------- manage booking (backend emails a secure link) ---------- */
+const dlg = $("#manage");
+if (CONFIG.bookByPhone) {
+  $("#phoneBook").hidden = false;
+  $("#tripForm").hidden = true;
+  $("#quote").hidden = true;
+  // Accounts need the backend: hide Log in / Sign up, and turn banner Sign up buttons into Call buttons.
+  const auth = $(".nav-auth"); if (auth) auth.hidden = true;
+  const jr = $("#joinRewards"); if (jr) jr.hidden = true;
+  document.querySelectorAll("[data-signup]").forEach(btn => {
+    const a = document.createElement("a");
+    a.className = btn.className; a.href = "tel:+18339501757"; a.target = "_top";
+    a.textContent = "Call 833 950 1757";
+    a.style.cssText = "text-decoration:none;display:inline-flex;align-items:center;justify-content:center";
+    btn.replaceWith(a);
+  });
+}
+const privacyDlg = $("#privacy");
+document.querySelectorAll("[data-open-privacy]").forEach(b => b.addEventListener("click", e => { e.preventDefault(); privacyDlg.showModal(); privacyDlg.scrollTop = 0; }));
+$("#privacyClose").addEventListener("click", () => privacyDlg.close());
+privacyDlg.addEventListener("click", e => { if (e.target === privacyDlg) privacyDlg.close(); });
+const policyDlg = $("#policy");
+policyDlg.showModal = (orig => function () { orig.call(this); this.scrollTop = 0; })(policyDlg.showModal);
+document.querySelectorAll("[data-open-policy]").forEach(b => b.addEventListener("click", e => { e.preventDefault(); policyDlg.showModal(); }));
+$("#policyClose").addEventListener("click", () => policyDlg.close());
+policyDlg.addEventListener("click", e => { if (e.target === policyDlg) policyDlg.close(); });
+document.querySelectorAll("[data-open-manage]").forEach(b => b.addEventListener("click", () => { hide($("#manageMsg")); dlg.showModal(); }));
+$("#manageClose").addEventListener("click", () => dlg.close());
+$("#manageForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const msg = $("#manageMsg"); hide(msg);
+  const f = new FormData(e.target);
+  const reference = (f.get("reference") || "").trim(), email = (f.get("email") || "").trim();
+  if (!reference) return show(msg, "Enter your booking reference.", "error");
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return show(msg, "Enter the email you booked with.", "error");
+  const btn = $("#manageBtn"); btn.disabled = true;
+  try {
+    if (!isDemo) {
+      await api("/manage/request", { reference, email, website: f.get("website") || "" });
+      // Same reply either way, so nobody can use this form to check whether a booking exists.
+      show(msg, "If those details match a booking, we've emailed a secure link.", "ok");
+    } else {
+      await sleep(400);
+      show(msg, "Online booking management is launching soon. Call 833 950 1757 and we can look up your trip by phone.", "ok");
+    }
+  } catch (ex) { show(msg, ex.message, "error"); }
+  finally { btn.disabled = false; }
+});
+
+/* ---------- search bar tabs (Book a ride, Dining Experience, Events, Sports) ---------- */
+const tabsEl = $("#tabs"), otherPanels = $("#otherPanels"), panels = { ride: $("#panel-ride") };
+
+function activateTab(id, focus) {
+  tabsEl.querySelectorAll(".tab").forEach(t => {
+    const on = t.dataset.id === id;
+    t.setAttribute("aria-selected", String(on));
+    t.tabIndex = on ? 0 : -1;
+    if (on && focus) t.focus();
+  });
+  Object.entries(panels).forEach(([k, el]) => { el.hidden = k !== id; });
+}
+
+function buildPanel(cat) {
+  const panel = document.createElement("div");
+  panel.id = "panel-" + cat.id;
+  panel.setAttribute("role", "region");
+  panel.setAttribute("aria-labelledby", "tile-" + cat.id);
+  panel.hidden = true;
+
+  const f = document.createElement("form");
+  f.noValidate = true;
+  const grid = document.createElement("div");
+  grid.className = "fields";
+  cat.fields.forEach(fd => {
+    const cell = document.createElement("div");
+    cell.className = "s" + (fd.span || 6);
+    const id = `${cat.id}-${fd.name}`;
+    const lab = document.createElement("label");
+    lab.htmlFor = id; lab.textContent = fd.label;
+    let input;
+    if (fd.type === "count") {
+      input = document.createElement("select");
+      for (let n = 1; n <= fd.max; n++) {
+        const o = document.createElement("option");
+        o.value = n; o.textContent = n === 1 ? `1 ${fd.noun}` : `${n} ${fd.noun}s`;
+        input.appendChild(o);
+      }
+    } else {
+      input = document.createElement("input");
+      input.type = fd.type;
+      if (fd.placeholder) input.placeholder = fd.placeholder;
+      if (fd.type === "text") { input.maxLength = 200; input.autocomplete = "off"; }
+      if (fd.type === "date") input.min = todayStr;
+    }
+    input.id = id; input.name = fd.name;
+    cell.append(lab, input);
+    grid.appendChild(cell);
+  });
+  // Search button goes in the last cell of the bar (fills whatever is left of the bottom row)
+  const btn = document.createElement("button");
+  btn.type = "submit"; btn.className = "btn search-btn"; btn.textContent = cat.button;
+  const used = cat.fields.reduce((n, fd) => n + (fd.span || 6), 0) % 12;
+  const btnCell = document.createElement("div");
+  btnCell.className = "s-btn s" + (used ? 12 - used : 12);
+  btnCell.appendChild(btn);
+  grid.appendChild(btnCell);
+
+  const hp = document.createElement("div");
+  hp.className = "honey"; hp.setAttribute("aria-hidden", "true");
+  hp.innerHTML = '<label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>';
+  grid.appendChild(hp);
+
+  const msg = document.createElement("p");
+  msg.className = "msg"; msg.hidden = true; msg.setAttribute("role", "alert");
+  const results = document.createElement("div");
+  results.className = "results"; results.hidden = true;
+  results.setAttribute("aria-live", "polite");
+  f.append(grid, msg);
+  panel.append(f, results);
+
+  f.addEventListener("submit", async e => {
+    e.preventDefault();
+    hide(msg); results.hidden = true; results.textContent = "";
+    const v = Object.fromEntries(new FormData(f).entries());
+    if (!(v.query || "").trim() && !(v.city || "").trim()) return show(msg, "Enter what you're looking for or a city.", "error");
+    if (!v.date) return show(msg, "Choose a date.", "error");
+    if (v.date < todayStr) return show(msg, "Choose a date that isn't in the past.", "error");
+    btn.disabled = true; btn.textContent = "Searching…";
+    try {
+      if (isDemo) {
+        await sleep(400);
+        show(msg, `Call 833 950 1757 and we'll help you plan your ${cat.label.toLowerCase()} outing and book your ride.`, "ok");
+      } else {
+        const data = await api("/search", { category: cat.id, ...v });
+        const list = Array.isArray(data.results) ? data.results : [];
+        if (!list.length) return show(msg, "No results for those details. Try a different date or city.", "error");
+        list.forEach(r => {
+          const row = document.createElement("div"); row.className = "result";
+          const left = document.createElement("div");
+          const t = document.createElement("div"); t.className = "result-title"; t.textContent = r.title || "";
+          const sub = document.createElement("div"); sub.className = "result-sub"; sub.textContent = r.subtitle || "";
+          left.append(t, sub); row.appendChild(left);
+          if (typeof r.priceCents === "number") {
+            const pr = document.createElement("div"); pr.className = "result-price"; pr.textContent = money(r.priceCents);
+            row.appendChild(pr);
+          }
+          results.appendChild(row);
+        });
+        results.hidden = false;
+      }
+    } catch (ex) { show(msg, ex.message, "error"); }
+    finally { btn.disabled = false; btn.textContent = cat.button; }
+  });
+  otherPanels.appendChild(panel);
+  return panel;
+}
+
+/* ---------- experience tiles (second container under the search bar) ---------- */
+const TILE_ICONS = {
+  "dining": '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>',
+  "business-events": '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+  "sports": '<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/>',
+  "concerts": '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+  "shows": '<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/>'
+};
+const tilesEl = $("#exploreTiles"), explorePanels = {};
+function openExplore(id) {
+  const opening = explorePanels[id].hidden;
+  Object.entries(explorePanels).forEach(([k, el]) => {
+    const on = k === id && opening;
+    el.hidden = !on;
+    $("#tile-" + k).setAttribute("aria-expanded", String(on));
+  });
+  if (opening) { const first = explorePanels[id].querySelector("input,select"); if (first) first.focus({ preventScroll: true }); }
+}
+
+CONFIG.categories.forEach(cat => {
+  if (cat.id !== "ride") {
+    explorePanels[cat.id] = buildPanel(cat);
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "explore-tile"; b.id = "tile-" + cat.id;
+    b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", "panel-" + cat.id);
+    b.innerHTML = `<span class="tile-box"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${TILE_ICONS[cat.id] || '<circle cx="12" cy="12" r="9"/>'}</svg></span>`;
+    const lbl = document.createElement("span"); lbl.textContent = cat.label; b.appendChild(lbl);
+    if (cat.photo) {
+      b.classList.add("has-photo");
+      b.querySelector(".tile-box").classList.add("tile-photo");
+      b.style.setProperty("--tile-photo", `url("${cat.photo}")`);
+      b.style.setProperty("--tile-pos", cat.photoPosition || "center");
+      if (cat.photoZoom) b.style.setProperty("--tile-zoom", cat.photoZoom);
+    }
+    b.addEventListener("click", () => openExplore(cat.id));
+    tilesEl.appendChild(b);
+    return;
+  }
+  const t = document.createElement("span");
+  t.className = "tab tab-title"; t.id = "tab-" + cat.id; t.dataset.id = cat.id;
+  t.textContent = cat.label;
+  tabsEl.appendChild(t);
+  const group = document.createElement("div");
+  group.className = "vtypes"; group.setAttribute("role", "radiogroup"); group.setAttribute("aria-label", "Vehicle");
+  (CONFIG.rideTypes || []).forEach((v, i) => {
+    const sep = document.createElement("span"); sep.className = "vsep"; sep.setAttribute("aria-hidden", "true");
+    group.appendChild(sep);
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "vtype"; b.dataset.type = v.id;
+    b.setAttribute("role", "radio"); b.textContent = v.label;
+    b.addEventListener("click", () => pickRideType(v.id, true));
+    group.appendChild(b);
+  });
+  group.addEventListener("keydown", e => {
+    if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(e.key)) return;
+    const ids = CONFIG.rideTypes.map(v => v.id);
+    const cur = ids.indexOf(state.rideType);
+    const n = (e.key === "ArrowRight" || e.key === "ArrowDown") ? (cur + 1) % ids.length : (cur - 1 + ids.length) % ids.length;
+    e.preventDefault(); pickRideType(ids[n], true, true);
+  });
+  tabsEl.appendChild(group);
+});
+function pickRideType(id, userPicked, focus) {
+  state.rideType = id;
+  tabsEl.querySelectorAll(".vtype").forEach(b => {
+    const on = b.dataset.type === id;
+    b.setAttribute("aria-checked", String(on)); b.tabIndex = on ? 0 : -1;
+    if (on && focus) b.focus();
+  });
+  // a new vehicle means a new price: clear any fare already shown
+  if (userPicked && state.quote && !$("#quote").hidden) { $("#quote").hidden = true; state.quote = null; }
+}
+pickRideType((CONFIG.rideTypes && CONFIG.rideTypes[0] || {}).id);
+tabsEl.addEventListener("keydown", e => {
+  if (e.target.closest(".vtypes")) return;
+  if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(e.key)) return;
+  const ids = [...tabsEl.querySelectorAll(".tab")].map(t => t.dataset.id);
+  const cur = ids.indexOf(document.activeElement.dataset.id);
+  if (cur < 0) return;
+  const n = e.key === "ArrowRight" ? (cur + 1) % ids.length
+          : e.key === "ArrowLeft" ? (cur - 1 + ids.length) % ids.length
+          : e.key === "Home" ? 0 : ids.length - 1;
+  e.preventDefault();
+  activateTab(ids[n], true);
+});
+activateTab("ride");
+document.querySelectorAll('a[href="#search"]').forEach(a => a.addEventListener("click", () => activateTab("ride")));
+</script>
+
+
+
+<script>
+/* New white container: keep it 10% taller than the Plan your experience box */
+(function(){
+  var f=document.getElementById('feature'), e=document.getElementById('explore');
+  if(!f||!e) return;
+  function size(){
+    var open=document.querySelector('#otherPanels>div:not([hidden])');
+    if(open) return; // don't grow while an experience form is open
+    f.style.minHeight=Math.round(e.getBoundingClientRect().height*1.1)+'px';
+  }
+  var pi=document.querySelector('#pano img');
+  if(pi && pi.getAttribute('src')){ pi.hidden=false; pi.parentNode.classList.add('has-img'); }
+  var fi=document.querySelector('#featureImg img');
+  if(fi && fi.getAttribute('src')){ fi.hidden=false; fi.parentNode.classList.add('has-img'); }
+  window.addEventListener('load',size); window.addEventListener('resize',size); size();
+})();
+</script>
+
+<script>
+/* Closing photos: borrow the matching experience photo when src is empty, and open that experience on click */
+(function(){
+  var cats=(typeof CONFIG!=='undefined'&&CONFIG.categories)||[];
+  document.querySelectorAll('.vibe-card img[data-borrow]').forEach(function(img){
+    if(img.getAttribute('src')) return;
+    var c=cats.find(function(x){return x.id===img.dataset.borrow});
+    if(c&&c.photo){ img.src=c.photo; if(c.photoPosition) img.style.objectPosition=c.photoPosition; }
+  });
+  document.querySelectorAll('.vibe-card[data-open-tile]').forEach(function(a){
+    a.addEventListener('click',function(){
+      var t=document.getElementById('tile-'+a.dataset.openTile);
+      if(t&&t.getAttribute('aria-expanded')!=='true') setTimeout(function(){t.click()},50);
+    });
+  });
+})();
+</script>
+
+<script>
+/* ==========================================================================
+   EDIT: extra photos for the three circles (Game Day, Dining, Night Out).
+   The photo already in each circle stays first; these two fade in after it,
+   using the vehicle card timing (CONFIG.vehicleFade). Paste a photo URL
+   (or data URL) between the quotes. "" shows a placeholder.
+   ========================================================================== */
+var VIBE_PHOTOS = {
+  sports: ["/assets/img/game-day-2.jpg", "/assets/img/game-day-3.jpg"],   // Game Day
+  dining: ["/assets/img/dining-2.jpg", "/assets/img/dining-3.jpg"],   // Dining
+  shows:  ["/assets/img/night-out-2.jpg", "/assets/img/night-out-3.jpg"]    // Night Out
+};
+(function(){
+  var t=(typeof CONFIG!=='undefined'&&CONFIG.vehicleFade)||{everyMs:4000,fadeMs:1200,staggerMs:650};
+  document.documentElement.style.setProperty('--v-fade', t.fadeMs+'ms');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.vibe-card[data-open-tile]').forEach(function(card,c){
+    var pic=card.querySelector('.vibe-pic'); if(!pic) return;
+    var first=pic.querySelector('img'); if(!first) return;
+    first.classList.add('vs','is-active');
+    var slides=[first];
+    (VIBE_PHOTOS[card.dataset.openTile]||[]).forEach(function(src){
+      var el;
+      if(src){ el=document.createElement('img'); el.src=src; el.alt=''; el.loading='lazy'; }
+      else { el=document.createElement('span'); el.className='vs-empty'; }
+      el.classList.add('vs'); el.setAttribute('aria-hidden','true');
+      pic.appendChild(el); slides.push(el);
+    });
+    if(reduce||slides.length<2) return;
+    var i=0;
+    setTimeout(function(){ setInterval(function(){
+      slides[i].classList.remove('is-active');
+      i=(i+1)%slides.length;
+      slides[i].classList.add('is-active');
+    }, t.everyMs); }, c*t.staggerMs);
+  });
+})();
+</script>
+
+<script>
+/* ==========================================================================
+   EDIT: drop-down banner messages. Each one fades in for BANNER.everyMs.
+   icon: "phone", "app", "suv" or "star".  short: shorter text for phones.
+   cta / href are optional (leave "" to hide); cta2 / href2 add a second button.
+   Put words between ** ** to show them in gold.
+   ========================================================================== */
+var BANNER = {
+  show: true,          // false hides the banner completely
+  dropDelayMs: 600,    // wait before it slides down
+  everyMs: 5000,       // time each message stays up
+  messages: [
+    { icon:"app",   text:"Coming soon: **the Xities app** for iPhone and Android", short:"**Xities app** coming soon", cta:"", href:"" },
+    { icon:"phone", text:"Reservations by call or text, **833 950 1757**", short:"Call or text to book", cta:"Call", href:"tel:+18339501757", cta2:"Text", href2:"sms:+18339501757" },
+    { icon:"suv",   text:"Standard SUV starting at **$4.29 per mile**", short:"Standard SUV from **$4.29/mi**", cta:"Book a ride", href:"#search" },
+    { icon:"suv",   text:"7 Seater SUV starting at **$4.95 per mile**", short:"7 Seater SUV from **$4.95/mi**", cta:"Book a ride", href:"#search" },
+    { icon:"star",  text:"Ultra Luxury SUV starting at **$5.75 per mile**", short:"Ultra Luxury SUV from **$5.75/mi**", cta:"Book a ride", href:"#search" },
+    { icon:"phone", text:"Per mile rates for trips of **15 to 100 miles**. Shorter or longer trips, call or text for pricing", short:"Rates for **15–100 mi** trips", cta:"Call", href:"tel:+18339501757", cta2:"Text", href2:"sms:+18339501757" }
+  ]
+};
+(function(){
+  var bar=document.getElementById('dropBanner'), inner=document.getElementById('dbInner'), close=document.getElementById('dbClose');
+  if(!bar) return;
+  var dismissed=false; try{ dismissed=sessionStorage.getItem('xitiesBannerClosed')==='1'; }catch(e){}
+  if(!BANNER.show || dismissed || !BANNER.messages.length){ bar.remove(); return; }
+  var icons={
+    phone:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/>',
+    app:'<rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18h2"/>',
+    suv:'<path d="M3 16v-4l2.5-5h10l3.5 5H21v4"/><path d="M3 12h18"/><circle cx="7" cy="16.5" r="2"/><circle cx="17" cy="16.5" r="2"/>',
+    star:'<path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/>'
+  };
+  function gold(t){return esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  var slides=BANNER.messages.map(function(m,i){
+    var d=document.createElement('div'); d.className='db-msg'+(i===0?' is-active':'');
+    if(i!==0) d.setAttribute('aria-hidden','true');
+    var html='<span class="db-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(icons[m.icon]||icons.star)+'</svg></span>'+
+      '<span class="db-text db-long">'+gold(m.text)+'</span>'+'<span class="db-text db-short">'+gold(m.short||m.text)+'</span>';
+    if(m.cta&&m.href) html+='<a class="db-cta" href="'+esc(m.href)+'"'+(/^(tel|sms):/.test(m.href)?' target="_top"':'')+(i!==0?' tabindex="-1"':'')+'>'+esc(m.cta)+'</a>';
+    if(m.cta2&&m.href2) html+='<a class="db-cta db-cta2" href="'+esc(m.href2)+'" target="_top"'+(i!==0?' tabindex="-1"':'')+'>'+esc(m.cta2)+'</a>';
+    d.innerHTML=html; inner.appendChild(d); return d;
+  });
+  function setH(){ document.documentElement.style.setProperty('--banner-h', bar.classList.contains('is-down')?bar.offsetHeight+'px':'0px'); }
+  setTimeout(function(){ bar.classList.add('is-down'); bar.removeAttribute('aria-hidden'); setH(); }, BANNER.dropDelayMs);
+  window.addEventListener('resize', setH);
+  var i=0, timer=null, reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(n){
+    slides[i].classList.remove('is-active'); slides[i].setAttribute('aria-hidden','true');
+    slides[i].querySelectorAll('a').forEach(function(a){a.tabIndex=-1});
+    i=n; slides[i].classList.add('is-active'); slides[i].removeAttribute('aria-hidden');
+    slides[i].querySelectorAll('a').forEach(function(a){a.removeAttribute('tabindex')});
+  }
+  function start(){ if(slides.length>1 && !reduce) timer=setInterval(function(){ go((i+1)%slides.length); }, BANNER.everyMs); }
+  bar.addEventListener('mouseenter',function(){clearInterval(timer)});
+  bar.addEventListener('mouseleave',function(){clearInterval(timer);start()});
+  bar.addEventListener('focusin',function(){clearInterval(timer)});
+  start();
+  close.addEventListener('click',function(){
+    clearInterval(timer); bar.classList.remove('is-down'); setH();
+    try{ sessionStorage.setItem('xitiesBannerClosed','1'); }catch(e){}
+    setTimeout(function(){ bar.remove(); }, 800);
+  });
+})();
+</script>
+</body>
+</html>
